@@ -4,6 +4,325 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Tutorial">
+    tools:context=".MainActivity">
 
+    <ScrollView
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text1"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text2"/>
+
+            <TextView
+                android:paddingBottom="10dp"
+                android:paddingLeft="30dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text3"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text4"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text5"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text6"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text7"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text8"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="30dp"
+                android:paddingBottom="20dp"
+                android:text="@string/text9"
+                android:textSize="20dp" />
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text10"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text11"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text12"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text13"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text14"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text15"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="50dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text16"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="50dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text17"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="50dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text18"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="50dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text19"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="50dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text20"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text21"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text22"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text23"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text24"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text25"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text26"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text27"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text28"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text29"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text30"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text31"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text32"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text33"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text34"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text35"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text36"/>
+
+            <TextView
+                android:paddingBottom="20dp"
+                android:paddingLeft="30dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text37"/>
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

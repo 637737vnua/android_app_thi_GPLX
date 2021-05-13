@@ -6,9 +6,14 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+
 public class Home extends AppCompatActivity {
+
+    private ImageView iconMenu;
 
     //  Khai báo button
     ConstraintLayout
@@ -18,13 +23,16 @@ public class Home extends AppCompatActivity {
             btnCauSai,
             btnThiSaHinh,
             btnMeoThi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         getSupportActionBar().hide();
-
         goibutton();
+
+        // function sliding
+        sliding();
 
     }
 
@@ -55,6 +63,29 @@ public class Home extends AppCompatActivity {
             Intent intent = new Intent(Home.this, Tutorial.class);
             startActivity(intent);
         }
+    }
+
+    // sliding
+    public void sliding () {
+        SlidingMenu menu = new SlidingMenu(this);
+        menu.setMode(SlidingMenu.LEFT);
+        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        menu.setShadowWidthRes(R.dimen.shadow_width);
+        menu.setShadowDrawable(R.drawable.shadow);
+        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+        menu.setFadeDegree(0.35f);
+        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+        menu.setMenu(R.layout.layout_menu);
+
+        iconMenu = (ImageView) findViewById(R.id.icon_Menu);
+
+        // click icon menu
+        iconMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                menu.toggle();
+            }
+        });
     }
 
 }

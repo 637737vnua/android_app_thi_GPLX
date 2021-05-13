@@ -6,9 +6,47 @@
     android:layout_height="match_parent"
     tools:context=".Home">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="81dp"
+        android:background="@color/blue"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/icon_Menu"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:foregroundGravity="center_vertical"
+            android:scaleType="fitXY"
+            android:src="@drawable/outline_menu_white_18"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView"
+            app:layout_constraintHorizontal_bias="0.266"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ôn thi giấy phép lái xe"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="413dp"
+        android:layout_height="473dp"
         android:baselineAligned="false"
         android:orientation="horizontal"
         android:weightSum="10"
@@ -34,10 +72,10 @@
                 android:onClick="onClick">
 
                 <ImageView
-                    android:contentDescription="@string/content_img"
                     android:id="@+id/imageView2"
                     android:layout_width="110dp"
                     android:layout_height="94dp"
+                    android:contentDescription="@string/content_img"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -68,10 +106,10 @@
                 android:onClick="onClick">
 
                 <ImageView
-                    android:contentDescription="@string/content_img"
                     android:id="@+id/imageView5"
                     android:layout_width="110dp"
                     android:layout_height="94dp"
+                    android:contentDescription="@string/content_img"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -101,10 +139,10 @@
                 android:onClick="onClick">
 
                 <ImageView
-                    android:contentDescription="@string/content_img"
                     android:id="@+id/imageView7"
                     android:layout_width="110dp"
                     android:layout_height="94dp"
+                    android:contentDescription="@string/content_img"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -143,10 +181,10 @@
                 android:onClick="onClick">
 
                 <ImageView
-                    android:contentDescription="@string/content_img"
                     android:id="@+id/imageView3"
                     android:layout_width="110dp"
                     android:layout_height="94dp"
+                    android:contentDescription="@string/content_img"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -176,10 +214,10 @@
                 android:onClick="onClick">
 
                 <ImageView
-                    android:contentDescription="@string/content_img"
                     android:id="@+id/imageView6"
                     android:layout_width="110dp"
                     android:layout_height="94dp"
+                    android:contentDescription="@string/content_img"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -209,10 +247,10 @@
                 android:onClick="onClick">
 
                 <ImageView
-                    android:contentDescription="@string/content_img"
                     android:id="@+id/imageView4"
                     android:layout_width="110dp"
                     android:layout_height="94dp"
+                    android:contentDescription="@string/content_img"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
