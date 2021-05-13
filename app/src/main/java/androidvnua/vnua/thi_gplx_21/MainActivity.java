@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static int SPLASH_SCREEN = 2500;
+    private static int SPLASH_SCREEN = 1;
 
     Animation animAlpha;
     TextView logo;
