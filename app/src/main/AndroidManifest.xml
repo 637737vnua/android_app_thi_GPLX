@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Thi_GPLX_21">
-        <activity android:name=".Tutorial"></activity>
+        <activity android:name=".StartTask"></activity>
+        <activity android:name=".Tutorial" />
         <activity android:name=".Home" />
         <activity android:name=".MainActivity">
             <intent-filter>

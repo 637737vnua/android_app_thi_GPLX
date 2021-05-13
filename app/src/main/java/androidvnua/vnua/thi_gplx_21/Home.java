@@ -41,7 +41,8 @@ public class Home extends AppCompatActivity {
     //  Hàm sự kiện Click
     public void onClick(View v) {
         if (v == btnThiThu) {
-            Toast.makeText(Home.this, "Bắt đầu thi", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(Home.this, StartTask.class);
+            startActivity(intent);
         }else if (v == btnCauDiemLiet) {
             Toast.makeText(Home.this, "Phần câu diểm liệt", Toast.LENGTH_LONG).show();
         }else if (v == btnCauSai) {
