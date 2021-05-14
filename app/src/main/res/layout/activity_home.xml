@@ -38,11 +38,11 @@
             app:titleTextColor="@color/white"
             app:subtitleTextColor="@color/white"
             android:layout_height="0dp"
-            android:layout_weight="0.8">
+            android:layout_weight="1">
         </androidx.appcompat.widget.Toolbar>
 
         <LinearLayout
-            android:layout_weight="9.2"
+            android:layout_weight="9"
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
