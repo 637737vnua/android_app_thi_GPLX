@@ -9,4 +9,9 @@
     <string name="meothi">Mẹo thi</string>
     <string name="socauhoi">0/35</string>
     <string name="meo600cau">Mẹo 600 câu hỏi ôn thi GPLX</string>
+    <string name="Open">Open</string>
+    <string name="Close">Close</string>
+    <string name="chia_se">Chia sẻ</string>
+    <string name="udkhac">Ứng dụng khác</string>
+    <string name="caidat">Cài đặt</string>
 </resources>

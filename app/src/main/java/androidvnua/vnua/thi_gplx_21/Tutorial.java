@@ -10,6 +10,5 @@ public class Tutorial extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
-        getSupportActionBar().hide();
     }
 }
