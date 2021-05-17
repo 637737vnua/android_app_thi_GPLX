@@ -62,7 +62,8 @@ public class Home extends AppCompatActivity {
         }else if (v == btnCauSai) {
             Toast.makeText(Home.this, "Phần câi trả lời sai", Toast.LENGTH_LONG).show();
         }else if (v == btnHocBienBao) {
-            Toast.makeText(Home.this, "Phần học biển báo", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(Home.this, TrafficSign.class);
+            startActivity(intent);
         }else if (v == btnThiSaHinh) {
             Toast.makeText(Home.this, "Phần thi sa hình", Toast.LENGTH_LONG).show();
         }else if (v == btnMeoThi) {

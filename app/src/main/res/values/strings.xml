@@ -14,4 +14,8 @@
     <string name="chia_se">Chia sẻ</string>
     <string name="udkhac">Ứng dụng khác</string>
     <string name="caidat">Cài đặt</string>
+    <string name="todo" />
+    <string name="clbb">Các loại biển báo</string>
+    <string name="bi_n_b_o_c_m">Biển báo cấm</string>
+    <string name="bi_n_b_o_nguy_hi_m">Biển báo nguy hiểm</string>
 </resources>
