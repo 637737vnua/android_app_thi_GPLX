@@ -13,10 +13,10 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
-public class TrafficAdapter extends ArrayAdapter<TrafficItem> {
+public class Adapter extends ArrayAdapter<Traffic> {
     private final Context mContext;
     private final int mResource;
-    public TrafficAdapter(@NonNull Context context, int resource, @NonNull ArrayList<TrafficItem> objects) {
+    public Adapter(@NonNull Context context, int resource, @NonNull ArrayList<Traffic> objects) {
         super(context, resource, objects);
         this.mContext=context;
         this.mResource=resource;
@@ -30,11 +30,10 @@ public class TrafficAdapter extends ArrayAdapter<TrafficItem> {
         convertView=layoutInflater.inflate(mResource, parent, false);
 
         ImageView imageView=convertView.findViewById(R.id.image);
-
         TextView txtName=convertView.findViewById(R.id.txtName);
         TextView txtDes=convertView.findViewById(R.id.txtDes);
-        imageView.setImageResource(getItem(position).getImage());
 
+        imageView.setImageResource(getItem(position).getImage());
         txtName.setText(getItem(position).getName());
         txtDes.setText(getItem(position).getDes());
         return convertView;
