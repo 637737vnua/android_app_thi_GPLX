@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import androidvnua.vnua.database.dbCauHoi;
@@ -49,6 +51,7 @@ public class MainActivity_start extends AppCompatActivity {
         int cauHoiB = dataCauHoi.getColumnIndex("CauHoiB");
         int cauHoiC = dataCauHoi.getColumnIndex("CauHoiC");
         int cauHoiD = dataCauHoi.getColumnIndex("CauHoiD");
+        int image = dataCauHoi.getColumnIndex("Image");
         int dapAn = dataCauHoi.getColumnIndex("DapAn");
 
         while (dataCauHoi.moveToNext()) {
@@ -58,14 +61,26 @@ public class MainActivity_start extends AppCompatActivity {
             String B = dataCauHoi.getString(cauHoiB);
             String C = dataCauHoi.getString(cauHoiC);
             String D = dataCauHoi.getString(cauHoiD);
+            String img = dataCauHoi.getString(image);
             String Ans = dataCauHoi.getString(dapAn);
-
-            listQuestions.add(new ListQuestion(""+Ques, ""+A, ""+B, ""+C, ""+D, 0, ""+Ans));
+            int resID = getResId(img, R.drawable.class);
+            listQuestions.add(new ListQuestion(""+Ques, ""+A, ""+B, ""+C, ""+D, resID, ""+Ans));
         }
+
     }
 
     private void anhxa() {
         listView = (ListView) findViewById(R.id.listStart);
         listQuestions = new ArrayList<>();
+    }
+
+    public static int getResId(String resName, Class<?> c) {
+        try {
+            Field idField = c.getDeclaredField(resName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 }

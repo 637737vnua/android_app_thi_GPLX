@@ -74,6 +74,7 @@ public class AdapterListQues extends BaseAdapter {
         ansMe = new boolean[listQuestions.size()];
 
         if (question.getHinhAnh() != 0) {
+            holder.imgHinh.getLayoutParams().height = 260;
             holder.imgHinh.setImageResource(question.getHinhAnh());
         } else {
             holder.imgHinh.getLayoutParams().height = 1;
@@ -82,18 +83,19 @@ public class AdapterListQues extends BaseAdapter {
         holder.Q.setText( "Câu " +number+": "+  question.getQues());
         holder.A.setText("A. "+question.getA());
         holder.B.setText("B. "+question.getB());
-
-        if (question.getC().equals(null)) {
-            holder.C.setButtonDrawable(null);
+        if (question.getC().equals("null")) {
+            holder.C.setVisibility(View.GONE);
             holder.C.setText(" ");
         } else {
+            holder.C.setButtonDrawable(R.drawable.custom_radio);
             holder.C.setText("C. "+question.getC());
         }
 
-        if (question.getD().equals(null)) {
-            holder.D.setButtonDrawable(null);
+        if (question.getD().equals("null")) {
+            holder.D.setVisibility(View.GONE);
             holder.D.setText(" ");
         } else {
+            holder.D.setButtonDrawable(R.drawable.custom_radio);
             holder.D.setText("D. "+question.getD());
         }
 
