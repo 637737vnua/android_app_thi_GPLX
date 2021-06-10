@@ -17,6 +17,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.lang.reflect.Field;
 
 import androidvnua.vnua.database.dbCauHoi;
+import androidvnua.vnua.mucdethi.MainActivity_dethi;
 
 public class Home extends AppCompatActivity {
 
@@ -69,7 +70,7 @@ public class Home extends AppCompatActivity {
     //  Hàm sự kiện Click
     public void onClick(View v) {
         if (v == btnThiThu) {
-            Intent intent = new Intent(Home.this, StartTask.class);
+            Intent intent = new Intent(Home.this, MainActivity_dethi.class);
             startActivity(intent);
         }else if (v == btnCauDiemLiet) {
             Toast.makeText(Home.this, "Phần câu diểm liệt", Toast.LENGTH_LONG).show();
