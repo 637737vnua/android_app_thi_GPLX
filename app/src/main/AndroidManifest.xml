@@ -9,11 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Thi_GPLX_21">
-        <activity android:name="androidvnua.vnua.mucdethi.MainActivity_start"></activity>
-        <activity android:name="androidvnua.vnua.mucdethi.MainActivity_dethi" />
+        <activity android:name="androidvnua.vnua.mucdethi.MainActivity4"></activity>
         <activity android:name=".Traffic_list_2" />
         <activity android:name=".Traffic_list_1" />
         <activity android:name=".TrafficSign" />
+        <activity android:name=".listview.TrafficSign" />
+        <activity android:name=".StartTask" />
         <activity android:name=".Tutorial" />
         <activity android:name=".Home" />
         <activity android:name=".MainActivity">
