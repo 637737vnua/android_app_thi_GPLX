@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".TrafficInfor">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#0A2FFF" />
+
+    <TextView
+        android:id="@+id/nameTraffic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:padding="15dp"
+        android:text="@string/bi_n_b_o_c_m"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imgTraffic"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_below="@+id/tBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/bienbao1" />
+
+    <TextView
+        android:id="@+id/desTraffic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgTraffic"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:padding="20dp"
+        android:text="@string/bi_n_b_o_nguy_hi_m"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+
+
+
+</RelativeLayout>
