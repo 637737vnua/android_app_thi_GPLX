@@ -12,8 +12,6 @@
         <activity android:name=".TrafficInfor"></activity>
         <activity android:name="androidvnua.vnua.mucdethi.MainActivity_start" />
         <activity android:name="androidvnua.vnua.mucdethi.MainActivity_dethi" />
-        <activity android:name=".Traffic_list_2" />
-        <activity android:name=".Traffic_list_1" />
         <activity android:name=".TrafficSign" />
         <activity android:name=".Tutorial" />
         <activity android:name=".Home" />
