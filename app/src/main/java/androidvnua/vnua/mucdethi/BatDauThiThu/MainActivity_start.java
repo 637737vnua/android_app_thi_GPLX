@@ -1,17 +1,17 @@
-package androidvnua.vnua.mucdethi;
+package androidvnua.vnua.mucdethi.BatDauThiThu;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.KeyEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,7 +19,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import androidvnua.vnua.database.dbCauHoi;
-import androidvnua.vnua.thi_gplx_21.CountDownText;
+import androidvnua.vnua.mucdethi.AdapterListQues;
+import androidvnua.vnua.mucdethi.ListQuestion;
 import androidvnua.vnua.thi_gplx_21.R;
 
 public class MainActivity_start extends AppCompatActivity {
@@ -31,6 +32,7 @@ public class MainActivity_start extends AppCompatActivity {
     ListView listView;
     TextView txtCountDown;
     CountDownTimer mcountDownTimer;
+    Button btnCheck;
     long timeLeftInMilliseconds = 60000; // 1p;
 
     @Override
@@ -46,8 +48,11 @@ public class MainActivity_start extends AppCompatActivity {
         adapter = new AdapterListQues(MainActivity_start.this, R.layout.custom_view_question, listQuestions);
         listView.setAdapter(adapter);
 
+        // Thời gian làm bài thi
         CountDown();
 
+        // Btn nộp bài thi
+        ClickBtnCheck();
     }
 
     private void connectDB() {
@@ -86,6 +91,7 @@ public class MainActivity_start extends AppCompatActivity {
     private void anhxa() {
         listView = (ListView) findViewById(R.id.listStart);
         txtCountDown = (TextView) findViewById(R.id.txtCountDown);
+        btnCheck = (Button) findViewById(R.id.check);
         listQuestions = new ArrayList<>();
     }
 
@@ -160,6 +166,15 @@ public class MainActivity_start extends AppCompatActivity {
         dialog.show();
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
+
+        Button btnKiemTraInDiaLOg = (Button) dialog.findViewById(R.id.btnXemKQ);
+        btnKiemTraInDiaLOg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_start.this, KiemTraKetQua.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -197,5 +212,16 @@ public class MainActivity_start extends AppCompatActivity {
         AlertDialog al = b.create();
         //Hiển thị
         al.show();
+    }
+
+    public void ClickBtnCheck() {
+        btnCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_start.this, KiemTraKetQua.class);
+                startActivity(intent);
+                mcountDownTimer.cancel();
+            }
+        });
     }
 }

@@ -1,4 +1,4 @@
-package androidvnua.vnua.BatDauThiThu;
+package androidvnua.vnua.thi_gplx_21;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,11 +16,8 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.lang.reflect.Field;
 
-import androidvnua.vnua.database.dbCauHoi;
 import androidvnua.vnua.mucdethi.MainActivity_dethi;
-import androidvnua.vnua.thi_gplx_21.R;
-import androidvnua.vnua.thi_gplx_21.TrafficSign;
-import androidvnua.vnua.thi_gplx_21.Tutorial;
+import androidvnua.vnua.database.dbCauHoi;
 
 public class Home extends AppCompatActivity {
 
