@@ -10,8 +10,8 @@ import android.widget.GridView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-
 import androidvnua.vnua.database.dbCauHoi;
+import androidvnua.vnua.mucdethi.BatDauThiThu.MainActivity_start;
 import androidvnua.vnua.thi_gplx_21.R;
 
 public class MainActivity_dethi extends AppCompatActivity {
