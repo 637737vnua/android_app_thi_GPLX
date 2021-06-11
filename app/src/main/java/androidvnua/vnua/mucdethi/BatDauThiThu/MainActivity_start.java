@@ -32,8 +32,8 @@ public class MainActivity_start extends AppCompatActivity {
     ListView listView;
     TextView txtCountDown;
     CountDownTimer mcountDownTimer;
-    Button btnCheck;
-    long timeLeftInMilliseconds = 60000; // 1p;
+    Button btnBack;
+    long timeLeftInMilliseconds = 10000; // 1p;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +91,7 @@ public class MainActivity_start extends AppCompatActivity {
     private void anhxa() {
         listView = (ListView) findViewById(R.id.listStart);
         txtCountDown = (TextView) findViewById(R.id.txtCountDown);
-        btnCheck = (Button) findViewById(R.id.check);
+        btnBack = (Button) findViewById(R.id.back);
         listQuestions = new ArrayList<>();
     }
 
@@ -173,22 +173,24 @@ public class MainActivity_start extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch(keyCode){
             case KeyEvent.KEYCODE_BACK:
-                DiaLogBack();
+                DiaLogBack("Bạn có muốn dừng làm bài không?");
                 return true;
         }
         return super.onKeyDown(keyCode, event);
     }
 
     // Function DiaLogBack xử lý thông báo
-    public void DiaLogBack() {
+    public void DiaLogBack(String title) {
         //Tạo đối tượng
         AlertDialog.Builder b = new AlertDialog.Builder(this);
+        b.setCancelable(false);
         //Thiết lập tiêu đề
         b.setTitle("Xác nhận");
-        b.setMessage("Bạn có đồng ý thoát chương trình không?");
+        b.setMessage(title);
         // Nút Ok
         b.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+                mcountDownTimer.cancel();
                 finish();
             }
         });
@@ -198,6 +200,7 @@ public class MainActivity_start extends AppCompatActivity {
                 dialog.cancel();
             }
         });
+
         //Tạo dialog
         AlertDialog al = b.create();
         //Hiển thị
@@ -205,12 +208,10 @@ public class MainActivity_start extends AppCompatActivity {
     }
 
     public void ClickBtnCheck() {
-        btnCheck.setOnClickListener(new View.OnClickListener() {
+        btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity_start.this, KiemTraKetQua.class);
-                startActivity(intent);
-                mcountDownTimer.cancel();
+                DiaLogBack("Bạn có muốn dừng làm bài không?");
             }
         });
     }

@@ -21,4 +21,5 @@
     <string name="xemketqua">Xem kết quả</string>
     <string name="hetgio">Hết giờ</string>
     <string name="btn_check">Nộp bài</string>
+    <string name="btn_back">Quay lại</string>
 </resources>
