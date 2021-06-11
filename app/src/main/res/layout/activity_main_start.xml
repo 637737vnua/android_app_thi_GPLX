@@ -13,15 +13,30 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/gray"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="4">
 
         <TextView
+            android:layout_weight="3"
             android:id="@+id/txtCountDown"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="TextView"
             android:gravity="center"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:textSize="20sp"/>
+
+        <Button
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/check"
+            android:text="@string/btn_check"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:layout_gravity="center"
+            android:backgroundTint="#542A2AE1"/>
     </LinearLayout>
 
     <ListView

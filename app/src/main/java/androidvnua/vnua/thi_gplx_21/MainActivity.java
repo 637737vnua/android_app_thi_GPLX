@@ -9,6 +9,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
+import androidvnua.vnua.BatDauThiThu.Home;
+
 public class MainActivity extends AppCompatActivity {
 
     private static int SPLASH_SCREEN = 1;

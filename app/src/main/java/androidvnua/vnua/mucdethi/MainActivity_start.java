@@ -1,10 +1,14 @@
 package androidvnua.vnua.mucdethi;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.view.KeyEvent;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +30,8 @@ public class MainActivity_start extends AppCompatActivity {
     AdapterListQues adapter;
     ListView listView;
     TextView txtCountDown;
+    CountDownTimer mcountDownTimer;
+    long timeLeftInMilliseconds = 60000; // 1p;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +45,9 @@ public class MainActivity_start extends AppCompatActivity {
         getCauHoi();
         adapter = new AdapterListQues(MainActivity_start.this, R.layout.custom_view_question, listQuestions);
         listView.setAdapter(adapter);
-        countDown(11000, 1000, txtCountDown);
+
+        CountDown();
+
     }
 
     private void connectDB() {
@@ -91,36 +99,50 @@ public class MainActivity_start extends AppCompatActivity {
         }
     }
 
-    private void countDown(long millislnFuture, long countDownInterval, TextView view) {
-        final android.os.CountDownTimer countDownTimer = new android.os.CountDownTimer(millislnFuture, countDownInterval) {
-            long min;
-            int s = 60;
-            String num01, num02;
-
+    // Function xử lý CountDownTimer
+    public void CountDown() {
+        mcountDownTimer = new CountDownTimer(timeLeftInMilliseconds, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                s--;
-                min = millisUntilFinished/1000/60;
-                num01 = addNumber0(min, 10);
-                num02 = addNumber0(s, 10);
-                view.setText(num01+String.valueOf(min)+":"+num02+String.valueOf(s));
-                if (s == 0) {
-                    s = 60;
-                }
+                timeLeftInMilliseconds = millisUntilFinished;
+                updateTimer();
             }
 
             @Override
             public void onFinish() {
-//                Intent intent = new Intent(MainActivity_start.this, MainActivity_dethi.class);
-//                startActivity(intent);
-//                finish();
                 dialogHetGio();
             }
-        };
-
-        countDownTimer.start();
+        }.start();
     }
 
+    // Function Update timer xử lý thời gian và setText
+    public void updateTimer() {
+        long second = (timeLeftInMilliseconds % 60000) / 1000;
+
+        // minutes = 120000 / 60000 = 2 (m)
+        int minutes = (int) timeLeftInMilliseconds / 60000;
+
+        // seconds = (120000 % 60000) / 1000 = 0;
+        int seconds = (int) second;
+
+        // Thời gian còn lại
+        String timeLeftText;
+
+        // 2:
+        timeLeftText = "" + minutes;
+        timeLeftText += ":";
+
+        // nếu seconds(s) < 10
+        if (seconds < 10) {
+            //2:0
+            timeLeftText += "0";
+        }
+
+        // 2:00
+        timeLeftText += seconds;
+
+        txtCountDown.setText(timeLeftText);
+    }
 
     private static String addNumber0(long number, int min){
         String string;
@@ -138,5 +160,42 @@ public class MainActivity_start extends AppCompatActivity {
         dialog.show();
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
+    }
+
+
+    // Xử lý khi người dùng click quay trở lại trên thanh cứng android
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch(keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                DiaLogBack();
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    // Function DiaLogBack xử lý thông báo
+    public void DiaLogBack() {
+        //Tạo đối tượng
+        AlertDialog.Builder b = new AlertDialog.Builder(this);
+        //Thiết lập tiêu đề
+        b.setTitle("Xác nhận");
+        b.setMessage("Bạn có đồng ý thoát chương trình không?");
+        // Nút Ok
+        b.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                finish();
+            }
+        });
+        //Nút Cancel
+        b.setNegativeButton("Không đồng ý", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+        //Tạo dialog
+        AlertDialog al = b.create();
+        //Hiển thị
+        al.show();
     }
 }

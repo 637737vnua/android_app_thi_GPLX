@@ -1,4 +1,4 @@
-package androidvnua.vnua.thi_gplx_21;
+package androidvnua.vnua.BatDauThiThu;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +18,9 @@ import java.lang.reflect.Field;
 
 import androidvnua.vnua.database.dbCauHoi;
 import androidvnua.vnua.mucdethi.MainActivity_dethi;
+import androidvnua.vnua.thi_gplx_21.R;
+import androidvnua.vnua.thi_gplx_21.TrafficSign;
+import androidvnua.vnua.thi_gplx_21.Tutorial;
 
 public class Home extends AppCompatActivity {
 
