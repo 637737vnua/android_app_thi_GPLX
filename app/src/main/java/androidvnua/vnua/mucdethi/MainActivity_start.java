@@ -144,16 +144,6 @@ public class MainActivity_start extends AppCompatActivity {
         txtCountDown.setText(timeLeftText);
     }
 
-    private static String addNumber0(long number, int min){
-        String string;
-        if (number < min) {
-            string = "0";
-        }else {
-            string = "";
-        }
-        return string;
-    }
-
     private void dialogHetGio() {
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_custom_thi);
