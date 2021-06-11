@@ -1,11 +1,11 @@
-package androidvnua.vnua.thi_gplx_21;
+package androidvnua.vnua.mucdethi;
 
 import android.content.Context;
 import android.content.Intent;
 import android.widget.TextView;
 
-public class CountDownText {
-    public static void countDown(long millislnFuture, long countDownInterval, TextView view) {
+public class Thoigianlambai {
+    public static void countDown(long millislnFuture, long countDownInterval, TextView view, Context context) {
         final android.os.CountDownTimer countDownTimer = new android.os.CountDownTimer(millislnFuture, countDownInterval) {
             long min;
             int s = 60;
@@ -25,6 +25,8 @@ public class CountDownText {
 
             @Override
             public void onFinish() {
+                Intent intent = new Intent(context, MainActivity_dethi.class);
+                context.startActivity(intent);
             }
         };
 

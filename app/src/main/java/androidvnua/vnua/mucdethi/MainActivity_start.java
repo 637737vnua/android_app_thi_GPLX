@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import androidvnua.vnua.database.dbCauHoi;
+import androidvnua.vnua.thi_gplx_21.CountDownText;
 import androidvnua.vnua.thi_gplx_21.R;
 
 public class MainActivity_start extends AppCompatActivity {
@@ -21,6 +23,7 @@ public class MainActivity_start extends AppCompatActivity {
     ArrayList<ListQuestion> listQuestions;
     AdapterListQues adapter;
     ListView listView;
+    TextView txtCountDown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class MainActivity_start extends AppCompatActivity {
         getCauHoi();
         adapter = new AdapterListQues(MainActivity_start.this, R.layout.custom_view_question, listQuestions);
         listView.setAdapter(adapter);
+        Thoigianlambai.countDown(60000, 1000, txtCountDown, MainActivity_start.this);
     }
 
     private void connectDB() {
@@ -71,6 +75,7 @@ public class MainActivity_start extends AppCompatActivity {
 
     private void anhxa() {
         listView = (ListView) findViewById(R.id.listStart);
+        txtCountDown = (TextView) findViewById(R.id.txtCountDown);
         listQuestions = new ArrayList<>();
     }
 

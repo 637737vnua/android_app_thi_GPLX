@@ -74,10 +74,10 @@ public class AdapterListQues extends BaseAdapter {
         ansMe = new boolean[listQuestions.size()];
 
         if (question.getHinhAnh() != 0) {
-            holder.imgHinh.getLayoutParams().height = 260;
+            holder.imgHinh.getLayoutParams().height = 300;
             holder.imgHinh.setImageResource(question.getHinhAnh());
         } else {
-            holder.imgHinh.getLayoutParams().height = 1;
+            holder.imgHinh.getLayoutParams().height = 0;
         }
 
         holder.Q.setText( "Câu " +number+": "+  question.getQues());
