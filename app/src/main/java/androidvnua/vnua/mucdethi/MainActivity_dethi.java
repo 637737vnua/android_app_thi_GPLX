@@ -63,6 +63,7 @@ public class MainActivity_dethi extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity_dethi.this, MainActivity_start.class);
                 intent.putExtra("ma_de", String.valueOf(position+1));
                 startActivity(intent);
+                finish();
             }
         });
     }

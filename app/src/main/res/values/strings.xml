@@ -18,4 +18,6 @@
     <string name="clbb">Các loại biển báo</string>
     <string name="bi_n_b_o_c_m">Biển báo cấm</string>
     <string name="bi_n_b_o_nguy_hi_m">Biển báo nguy hiểm</string>
+    <string name="xemketqua">Xem kết quả</string>
+    <string name="hetgio">Hết giờ</string>
 </resources>
