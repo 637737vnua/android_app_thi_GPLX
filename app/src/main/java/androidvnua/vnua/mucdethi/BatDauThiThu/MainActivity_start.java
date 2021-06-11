@@ -5,8 +5,10 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +33,7 @@ public class MainActivity_start extends AppCompatActivity {
     AdapterListQues adapter;
     ListView listView;
     TextView txtCountDown;
+    Button btnChecked;
     CountDownTimer mcountDownTimer;
     Button btnBack;
     long timeLeftInMilliseconds = 10000; // 1p;
@@ -51,8 +54,8 @@ public class MainActivity_start extends AppCompatActivity {
         // Thời gian làm bài thi
         CountDown();
 
-        // Btn nộp bài thi
-        ClickBtnCheck();
+        // Tạo btn nộp bài cuối listview và Click btn
+        CreateBtn();
     }
 
     private void connectDB() {
@@ -207,6 +210,26 @@ public class MainActivity_start extends AppCompatActivity {
         al.show();
     }
 
+    // Function create btn Kiểm tra
+    public void CreateBtn () {
+        btnChecked = new Button(this);
+
+        // style for btn
+        btnChecked.setText("Nộp Bài");
+        btnChecked.setGravity(Gravity.CENTER);
+        btnChecked.setTextColor(getApplication().getResources().getColor(R.color.white));
+        Drawable d = getResources().getDrawable(R.drawable.button_check);
+        btnChecked.setBackgroundDrawable(d);
+        btnChecked.setMinimumWidth(0);
+        btnChecked.setWidth(20);
+
+        if (btnChecked != null) {
+           listView.addFooterView(btnChecked);
+        }
+        ClickBtnCheck();
+    }
+
+    // Function btnCheck
     public void ClickBtnCheck() {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
