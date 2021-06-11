@@ -40,15 +40,14 @@
             android:layout_gravity="center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
             android:text="Đề 1"
             android:textSize="21sp"
             android:textStyle="bold"/>
 
         <Button
-            android:layout_weight="1.5"
+            android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_marginStart="45dp"
             android:layout_height="wrap_content"
             android:id="@+id/back"
             android:text="@string/btn_back"
@@ -63,9 +62,5 @@
         android:id="@+id/listStart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="11"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_weight="11"/>
 </LinearLayout>

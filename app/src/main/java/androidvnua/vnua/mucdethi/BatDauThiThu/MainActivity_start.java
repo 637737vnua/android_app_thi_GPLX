@@ -8,10 +8,13 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -36,7 +39,7 @@ public class MainActivity_start extends AppCompatActivity {
     Button btnChecked;
     CountDownTimer mcountDownTimer;
     Button btnBack;
-    long timeLeftInMilliseconds = 10000; // 1p;
+    long timeLeftInMilliseconds = 600000; // 1p;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -217,11 +220,11 @@ public class MainActivity_start extends AppCompatActivity {
         // style for btn
         btnChecked.setText("Nộp Bài");
         btnChecked.setGravity(Gravity.CENTER);
+
         btnChecked.setTextColor(getApplication().getResources().getColor(R.color.white));
-        Drawable d = getResources().getDrawable(R.drawable.button_check);
-        btnChecked.setBackgroundDrawable(d);
-        btnChecked.setMinimumWidth(0);
-        btnChecked.setWidth(20);
+        Drawable custom = getDrawable(R.drawable.button_check);
+
+        btnChecked.setBackground(custom);
 
         if (btnChecked != null) {
            listView.addFooterView(btnChecked);
