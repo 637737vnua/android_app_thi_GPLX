@@ -1,30 +1,34 @@
 package androidvnua.vnua.mucdethi;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.List;
+
+import java.util.ArrayList;
 
 import androidvnua.vnua.thi_gplx_21.R;
 
-public class AdapterListQues extends BaseAdapter {
+public class AdapterListQues extends ArrayAdapter<ListQuestion> {
 
-    private final Context context;
-    private final int layout;
-    private final List<ListQuestion> listQuestions;
-    public boolean ansMe[];
+    private Activity activity;
+    private ArrayList<ListQuestion> listQuestions;
+    Toast t = null;
+    private SparseIntArray mSpCheckedState = new SparseIntArray();
 
-    public AdapterListQues(Context context, int layout, List<ListQuestion> listQuestions) {
-        this.context = context;
-        this.layout = layout;
-        this.listQuestions = listQuestions;
+    public AdapterListQues(Activity activity, ArrayList<ListQuestion> mAnswerList) {
+        super(activity, R.layout.custom_view_question, mAnswerList);
+        this.activity = activity;
+        this.listQuestions = mAnswerList;
     }
 
     @Override
@@ -33,8 +37,8 @@ public class AdapterListQues extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public ListQuestion getItem(int position) {
+        return listQuestions.get(position);
     }
 
     @Override
@@ -42,63 +46,97 @@ public class AdapterListQues extends BaseAdapter {
         return 0;
     }
 
-    private class viewHolder {
-        TextView Q;
-        RadioButton A, B, C, D;
-        RadioGroup rdgList;
-        ImageView imgHinh;
-    }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        viewHolder holder;
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        ViewHolder holder=null;
         if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(layout, null);
-            holder = new viewHolder();
-            holder.Q = (TextView) convertView.findViewById(R.id.txtQuestion);
-            holder.imgHinh = (ImageView) convertView.findViewById(R.id.imgQuestion);
-            holder.A = (RadioButton) convertView.findViewById(R.id.btnA);
-            holder.B = (RadioButton) convertView.findViewById(R.id.btnB);
-            holder.C = (RadioButton) convertView.findViewById(R.id.btnC);
-            holder.D = (RadioButton) convertView.findViewById(R.id.btnD);
-            holder.rdgList = (RadioGroup) convertView.findViewById(R.id.rdgQuestion);
+            holder = new ViewHolder();
+            convertView = LayoutInflater.from(activity)
+                    .inflate( R.layout.custom_view_question, parent, false);
+            holder.txtQues = (TextView) convertView.findViewById(R.id.txtQuestion);
+            holder.rdGroup = (RadioGroup) convertView.findViewById(R.id.rdgQuestion);
+            holder.btnA = (RadioButton) convertView.findViewById(R.id.btnA);
+            holder.btnB = (RadioButton) convertView.findViewById(R.id.btnB);
+            holder.btnC = (RadioButton) convertView.findViewById(R.id.btnC);
+            holder.btnD = (RadioButton) convertView.findViewById(R.id.btnD);
             convertView.setTag(holder);
-        }else {
-            holder = (viewHolder) convertView.getTag();
+
+        } else {
+            holder=(ViewHolder)convertView.getTag();
         }
+
+        holder.rdGroup.setOnCheckedChangeListener(null);
+        holder.rdGroup.clearCheck();
+
+        if(mSpCheckedState.indexOfKey(position)>-1){
+            holder.rdGroup.check(mSpCheckedState.get(position));
+        }else{
+            holder.rdGroup.clearCheck();
+        }
+
+        holder.rdGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @SuppressLint("ResourceType")
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId > -1){
+                    mSpCheckedState.put(position, checkedId);
+                }else{
+                    if(mSpCheckedState.indexOfKey(position)>-1)
+                        mSpCheckedState.removeAt(mSpCheckedState.indexOfKey(position));
+                }
+            }
+        });
 
         ListQuestion question = listQuestions.get(position);
         int number = position+1;
-
-        ansMe = new boolean[listQuestions.size()];
-
         if (question.getHinhAnh() != 0) {
-            holder.imgHinh.getLayoutParams().height = 300;
-            holder.imgHinh.setImageResource(question.getHinhAnh());
+            int img = R.drawable.imagech;
+            holder.imgHinh.setImageResource(img);
         } else {
-            holder.imgHinh.getLayoutParams().height = 0;
-        }
 
-        holder.Q.setText( "Câu " +number+": "+  question.getQues());
-        holder.A.setText("A. "+question.getA());
-        holder.B.setText("B. "+question.getB());
+        }
+        holder.txtQues.setText( "Câu " +number+": "+  question.getQues());
+
+        holder.btnA.setText("A. "+getItem(position).getA()+ question.getHinhAnh());
+        holder.btnB.setText("B. "+question.getB());
+
         if (question.getC().equals("null")) {
-            holder.C.setVisibility(View.GONE);
-            holder.C.setText(" ");
+            holder.btnC.setVisibility(View.GONE);
+            holder.btnC.setText(" ");
         } else {
-            holder.C.setButtonDrawable(R.drawable.custom_radio);
-            holder.C.setText("C. "+question.getC());
+            holder.btnC.setButtonDrawable(R.drawable.custom_radio);
+            holder.btnC.setText("C. "+question.getC());
         }
 
         if (question.getD().equals("null")) {
-            holder.D.setVisibility(View.GONE);
-            holder.D.setText(" ");
+            holder.btnD.setVisibility(View.GONE);
+            holder.btnD.setText(" ");
         } else {
-            holder.D.setButtonDrawable(R.drawable.custom_radio);
-            holder.D.setText("D. "+question.getD());
+            holder.btnD.setButtonDrawable(R.drawable.custom_radio);
+            holder.btnD.setText("D. "+question.getD());
         }
 
         return convertView;
+    }
+
+    private static class ViewHolder {
+        private TextView txtQues;
+        private RadioButton btnA;
+        private RadioButton btnB;
+        private RadioButton btnC;
+        private RadioButton btnD;
+        private RadioButton btnE;
+        private ImageView imgHinh;
+        private RadioGroup rdGroup;
+    }
+
+    void showToast(String text) {
+
+        if (t != null)
+            t.cancel();
+
+        t = Toast.makeText(activity, text, Toast.LENGTH_SHORT);
+        t.show();
     }
 }

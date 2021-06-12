@@ -8,13 +8,10 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,8 +31,8 @@ public class MainActivity_start extends AppCompatActivity {
     String maDe;
     ArrayList<ListQuestion> listQuestions;
     AdapterListQues adapter;
-    ListView listView;
-    TextView txtCountDown;
+    private ListView listView;
+    TextView txtCountDown, txtDe;
     Button btnChecked;
     CountDownTimer mcountDownTimer;
     Button btnBack;
@@ -46,19 +43,18 @@ public class MainActivity_start extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_start);
         Intent intent = getIntent();
-        maDe =intent.getStringExtra("ma_de");
+        maDe = intent.getStringExtra("ma_de");
 
         connectDB();
         anhxa();
         getCauHoi();
-        adapter = new AdapterListQues(MainActivity_start.this, R.layout.custom_view_question, listQuestions);
+        CountDown();
+        CreateBtn();
+
+        adapter = new AdapterListQues(this, listQuestions);
         listView.setAdapter(adapter);
 
-        // Thời gian làm bài thi
-        CountDown();
-
-        // Tạo btn nộp bài cuối listview và Click btn
-        CreateBtn();
+        txtDe.setText("Đề số "+maDe);
     }
 
     private void connectDB() {
@@ -90,6 +86,8 @@ public class MainActivity_start extends AppCompatActivity {
             String Ans = dataCauHoi.getString(dapAn);
             int resID = getResId(img, R.drawable.class);
             listQuestions.add(new ListQuestion(""+Ques, ""+A, ""+B, ""+C, ""+D, resID, ""+Ans));
+            listQuestions.add(new ListQuestion(""+Ques, ""+A, ""+B, ""+C, ""+D, resID, ""+Ans));
+            listQuestions.add(new ListQuestion(""+Ques, ""+A, ""+B, ""+C, ""+D, resID, ""+Ans));
         }
 
     }
@@ -98,6 +96,7 @@ public class MainActivity_start extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listStart);
         txtCountDown = (TextView) findViewById(R.id.txtCountDown);
         btnBack = (Button) findViewById(R.id.back);
+        txtDe = (TextView) findViewById(R.id.txtSoDe);
         listQuestions = new ArrayList<>();
     }
 

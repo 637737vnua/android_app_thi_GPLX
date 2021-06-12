@@ -25,7 +25,7 @@
             android:src="@drawable/dong_ho" />
 
         <TextView
-            android:layout_weight="0.75"
+            android:layout_weight="0.60"
             android:id="@+id/txtCountDown"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -36,12 +36,12 @@
 
         <TextView
             android:id="@+id/txtSoDe"
-            android:gravity="center"
+            android:gravity="start"
             android:layout_gravity="center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:text="Đề 1"
+            android:layout_weight="1.65"
+            android:text="Đề"
             android:textSize="21sp"
             android:textStyle="bold"/>
 
