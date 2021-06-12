@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,16 +28,16 @@ import androidvnua.vnua.thi_gplx_21.R;
 
 public class MainActivity_start extends AppCompatActivity {
 
-    dbCauHoi db;
-    String maDe;
-    ArrayList<ListQuestion> listQuestions;
-    AdapterListQues adapter;
+    private dbCauHoi db;
+    private String maDe;
+    private ArrayList<ListQuestion> listQuestions;
+    private AdapterListQues adapter;
     private ListView listView;
-    TextView txtCountDown, txtDe;
-    Button btnChecked;
-    CountDownTimer mcountDownTimer;
-    Button btnBack;
-    long timeLeftInMilliseconds = 600000; // 1p;
+    private TextView txtCountDown, txtDe;
+    private Button btnChecked;
+    private CountDownTimer mcountDownTimer;
+    private Button btnBack;
+    private long timeLeftInMilliseconds = 10000; // 1p;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class MainActivity_start extends AppCompatActivity {
         getCauHoi();
         CountDown();
         CreateBtn();
+        ClickBtnBack();
 
         adapter = new AdapterListQues(this, listQuestions);
         listView.setAdapter(adapter);
@@ -85,8 +87,6 @@ public class MainActivity_start extends AppCompatActivity {
             String img = dataCauHoi.getString(image);
             String Ans = dataCauHoi.getString(dapAn);
             int resID = getResId(img, R.drawable.class);
-            listQuestions.add(new ListQuestion(""+Ques, ""+A, ""+B, ""+C, ""+D, resID, ""+Ans));
-            listQuestions.add(new ListQuestion(""+Ques, ""+A, ""+B, ""+C, ""+D, resID, ""+Ans));
             listQuestions.add(new ListQuestion(""+Ques, ""+A, ""+B, ""+C, ""+D, resID, ""+Ans));
         }
 
@@ -164,10 +164,25 @@ public class MainActivity_start extends AppCompatActivity {
 
         Button btnKiemTraInDiaLOg = (Button) dialog.findViewById(R.id.btnXemKQ);
         btnKiemTraInDiaLOg.setOnClickListener(new View.OnClickListener() {
+            int count = 0;
+            String s = "";
             @Override
             public void onClick(View v) {
+                for (int i = 0; i < adapter.ans.length; i++) {
+                    if (adapter.ans[i]) {
+                        count++;
+                    } {
+                        s = s +":"+i;
+                    }
+                }
+
                 Intent intent = new Intent(MainActivity_start.this, KiemTraKetQua.class);
+                mcountDownTimer.cancel();
+                intent.putExtra("ma_de", maDe);
+                intent.putExtra("so_cau_dung", count);
+                intent.putExtra("cau_sai", s);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -228,11 +243,33 @@ public class MainActivity_start extends AppCompatActivity {
         if (btnChecked != null) {
            listView.addFooterView(btnChecked);
         }
-        ClickBtnCheck();
+
+        btnChecked.setOnClickListener(new View.OnClickListener() {
+            int count = 0;
+            String s = "";
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < adapter.ans.length; i++) {
+                    if (adapter.ans[i]) {
+                        count++;
+                    } {
+                        s = s +":"+i;
+                    }
+                }
+
+                Intent intent = new Intent(MainActivity_start.this, KiemTraKetQua.class);
+                mcountDownTimer.cancel();
+                intent.putExtra("ma_de", maDe);
+                intent.putExtra("so_cau_dung", count);
+                intent.putExtra("cau_sai", s);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     // Function btnCheck
-    public void ClickBtnCheck() {
+    public void ClickBtnBack() {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -22,4 +22,6 @@
     <string name="hetgio">Hết giờ</string>
     <string name="btn_check">Nộp bài</string>
     <string name="btn_back">Quay lại</string>
+    <string name="ket_qua">Kết quả thi</string>
+    <string name="diem_la">Điểm của bạn là:</string>
 </resources>
