@@ -50,7 +50,7 @@ public class MainActivity_dethi extends AppCompatActivity {
 
         listTitle = new ArrayList<>();
 
-        for (int i = 1; i <= count/5; i++) {
+        for (int i = 1; i <= count/20; i++) {
             listTitle.add(new titleStack(String.valueOf(i)));
         }
 

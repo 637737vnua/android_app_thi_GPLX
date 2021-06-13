@@ -34,8 +34,8 @@ public class KiemTraKetQua extends AppCompatActivity {
         cauSai = intent.getStringExtra("cau_sai");
 
         anhxa();
-        txtDiem.setText("Điểm của bạn là: "+soCauDung+"/6");
-        if (soCauDung >= 5) {
+        txtDiem.setText("Điểm của bạn là: "+soCauDung+"/20");
+        if (soCauDung >= 16) {
             imgKetQua.setImageResource(R.drawable.winner);
             txtMsg.setTextColor(Color.GREEN);
             txtMsg.setText("Bạn đã thi đậu");

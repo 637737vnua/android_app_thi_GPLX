@@ -37,7 +37,9 @@ public class MainActivity_start extends AppCompatActivity {
     private Button btnChecked;
     private CountDownTimer mcountDownTimer;
     private Button btnBack;
-    private long timeLeftInMilliseconds = 10000; // 1p;
+    private long timeLeftInMilliseconds = 900000; // 1p;
+    private int count = 0;
+    private String msg = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -227,11 +229,9 @@ public class MainActivity_start extends AppCompatActivity {
         al.show();
     }
 
-    // Function create btn Kiểm tra
     public void CreateBtn () {
         btnChecked = new Button(this);
 
-        // style for btn
         btnChecked.setText("Nộp Bài");
         btnChecked.setGravity(Gravity.CENTER);
 
@@ -245,30 +245,13 @@ public class MainActivity_start extends AppCompatActivity {
         }
 
         btnChecked.setOnClickListener(new View.OnClickListener() {
-            int count = 0;
-            String s = "";
             @Override
             public void onClick(View v) {
-                for (int i = 0; i < adapter.ans.length; i++) {
-                    if (adapter.ans[i]) {
-                        count++;
-                    } {
-                        s = s +":"+i;
-                    }
-                }
-
-                Intent intent = new Intent(MainActivity_start.this, KiemTraKetQua.class);
-                mcountDownTimer.cancel();
-                intent.putExtra("ma_de", maDe);
-                intent.putExtra("so_cau_dung", count);
-                intent.putExtra("cau_sai", s);
-                startActivity(intent);
-                finish();
+                DiaLogCheck("Vẫn còn thời gian bạn muốn nộp bài không?");
             }
         });
     }
 
-    // Function btnCheck
     public void ClickBtnBack() {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -276,5 +259,41 @@ public class MainActivity_start extends AppCompatActivity {
                 DiaLogBack("Bạn có muốn dừng làm bài không?");
             }
         });
+    }
+
+    public void DiaLogCheck(String title) {
+
+        AlertDialog.Builder b = new AlertDialog.Builder(this);
+        b.setCancelable(false);
+        b.setTitle("Xác nhận nộp bài");
+        b.setMessage(title);
+        b.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                for (int i = 0; i < adapter.ans.length; i++) {
+                    if (adapter.ans[i]) {
+                        count++;
+                    } {
+                        msg = msg +":"+i;
+                    }
+                }
+
+                Intent intent = new Intent(MainActivity_start.this, KiemTraKetQua.class);
+                mcountDownTimer.cancel();
+                intent.putExtra("ma_de", maDe);
+                intent.putExtra("so_cau_dung", count);
+                intent.putExtra("cau_sai", msg);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        b.setNegativeButton("Chưa nộp bài", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog al = b.create();
+        al.show();
     }
 }

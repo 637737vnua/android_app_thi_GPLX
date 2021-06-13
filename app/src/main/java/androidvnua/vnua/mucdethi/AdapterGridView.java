@@ -56,7 +56,7 @@ public class AdapterGridView extends BaseAdapter {
         }
 
         titleStack question = listTitle.get(position);
-        holder.title.setText("Đề số" +question.getDe());
+        holder.title.setText("Đề số " +question.getDe());
 
         return convertView;
     }

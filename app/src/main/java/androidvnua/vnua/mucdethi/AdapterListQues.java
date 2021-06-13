@@ -10,9 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import java.util.ArrayList;
 
@@ -24,7 +24,10 @@ public class AdapterListQues extends ArrayAdapter<ListQuestion> {
     private ArrayList<ListQuestion> listQuestions;
     Toast t = null;
     private SparseIntArray mSpCheckedState = new SparseIntArray();
-    public boolean ans[] = new boolean[6];
+    public boolean ans[] = new boolean[20];
+    private boolean tienDo[] = new boolean[20];
+    private int countSeek = 0;
+    private int countChecked = 0;
 
     public AdapterListQues(Activity activity, ArrayList<ListQuestion> mAnswerList) {
         super(activity, R.layout.custom_view_question, mAnswerList);
@@ -49,7 +52,12 @@ public class AdapterListQues extends ArrayAdapter<ListQuestion> {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+        SeekBar seekBarTienDo = activity.findViewById(R.id.tiendo);
+        TextView txtTienDo = activity.findViewById(R.id.txtTienDo);
+        seekBarTienDo.setEnabled(false);
+
         ViewHolder holder = null;
+
         if (convertView == null) {
             holder = new ViewHolder();
             LayoutInflater mInflater = (LayoutInflater) activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -95,32 +103,47 @@ public class AdapterListQues extends ArrayAdapter<ListQuestion> {
                     case R.id.btnA:
                         ans[position] = question.getAns().equals("A");
                         showToast("Check btn A" + ans[position]);
+                        tienDo[position] = true;
                         break;
                     case R.id.btnB:
                         ans[position] = question.getAns().equals("B");
                         showToast("Check btn B" + ans[position]);
+                        tienDo[position] = true;
                         break;
                     case R.id.btnC:
                         ans[position] = question.getAns().equals("C");
                         showToast("Check btn C" + ans[position]);
+                        if (question.getC().equals("null")) {
+                            tienDo[position] = false;
+                        } else {
+                            tienDo[position] = true;
+                        }
                         break;
                     case R.id.btnD:
                         ans[position] = question.getAns().equals("D");
                         showToast("Check btn D" + ans[position]);
+                        if (question.getD().equals("null")) {
+                            tienDo[position] = false;
+                        } else {
+                            tienDo[position] = true;
+                        }
                         break;
+                    default:
+                        tienDo[position] = false;
                 }
+
+                for (int i = 0; i < tienDo.length; i++) {
+                    if (tienDo[i]) {
+                        countSeek = countSeek +5;
+                        countChecked++;
+                    }
+                }
+                txtTienDo.setText(countChecked+"/20");
+                seekBarTienDo.setProgress(countSeek);
+                countSeek = 0;
+                countChecked = 0;
             }
         });
-
-        if (holder.btnA.isChecked()) {
-            ans[position] = question.getAns().equals("A");
-        } else if (holder.btnB.isChecked()) {
-            ans[position] = question.getAns().equals("B");
-        } else if (holder.btnC.isChecked()) {
-            ans[position] = question.getAns().equals("C");
-        } else if (holder.btnD.isChecked()) {
-            ans[position] = question.getAns().equals("D");
-        }
 
         if (question.getHinhAnh() != 0) {
             holder.imgHinh.getLayoutParams().height = 300;
