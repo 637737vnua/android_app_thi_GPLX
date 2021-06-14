@@ -286,11 +286,10 @@ public class MainActivity_start extends AppCompatActivity {
                 for (int i = 0; i < adapter.ans.length; i++) {
                     if (adapter.ans[i]) {
                         count++;
-                    } {
-                        msg = msg +":"+i;
+                    } else {
+                        msg = msg +":"+adapter.id[i];
                     }
                 }
-
                 for (int i = 0; i < adapter.isPass.length; i++) {
                     if (adapter.isPass[i]) {
                         countPass++;

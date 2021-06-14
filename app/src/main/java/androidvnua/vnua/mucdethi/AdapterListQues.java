@@ -25,6 +25,7 @@ public class AdapterListQues extends ArrayAdapter<ListQuestion> {
     Toast t = null;
     private SparseIntArray mSpCheckedState = new SparseIntArray();
     public boolean ans[] = new boolean[20];
+    public int id[] = new int[20];
     private boolean tienDo[] = new boolean[20];
     public boolean isPass[] = new boolean[20];
     private int countSeek = 0;
@@ -73,7 +74,6 @@ public class AdapterListQues extends ArrayAdapter<ListQuestion> {
             holder.btnD = (RadioButton) convertView.findViewById(R.id.btnD);
             holder.txtPass = (TextView) convertView.findViewById(R.id.txtPass);
             convertView.setTag(holder);
-
         } else {
             holder=(ViewHolder)convertView.getTag();
         }
@@ -97,6 +97,8 @@ public class AdapterListQues extends ArrayAdapter<ListQuestion> {
             holder.txtPass.setTextSize(0);
             holder.txtPass.setText("");
         }
+
+        id[position] = question.getID();
 
         holder.rdGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @SuppressLint("ResourceType")
