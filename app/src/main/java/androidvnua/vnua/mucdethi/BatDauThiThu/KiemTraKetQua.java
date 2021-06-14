@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +21,8 @@ public class KiemTraKetQua extends AppCompatActivity {
 
     private String maDe, cauSai;
     private int soCauDung;
-    private TextView txtDiem, txtMsg, TxtMsg2;
+    private boolean isPass;
+    private TextView txtDiem, txtMsg, txtMsg2, txtPass;
     private ImageView imgKetQua;
 
     @SuppressLint({"SetTextI18n", "ResourceAsColor"})
@@ -32,18 +34,28 @@ public class KiemTraKetQua extends AppCompatActivity {
         maDe = intent.getStringExtra("ma_de");
         soCauDung = intent.getIntExtra("so_cau_dung", 0);
         cauSai = intent.getStringExtra("cau_sai");
+        isPass = intent.getBooleanExtra("isPass", false);
 
         anhxa();
         txtDiem.setText("Điểm của bạn là: "+soCauDung+"/20");
-        if (soCauDung >= 16) {
-            imgKetQua.setImageResource(R.drawable.winner);
-            txtMsg.setTextColor(Color.GREEN);
-            txtMsg.setText("Bạn đã thi đậu");
-            randomMsgSuccess();
+        if (isPass) {
+            txtPass.setVisibility(View.GONE);
+            if (soCauDung >= 16) {
+                imgKetQua.setImageResource(R.drawable.winner);
+                txtMsg.setTextColor(Color.GREEN);
+                txtMsg.setText("Bạn đã thi đậu");
+                randomMsgSuccess();
+            } else {
+                imgKetQua.setImageResource(R.drawable.book);
+                txtMsg.setTextColor(Color.RED);
+                txtMsg.setText("Bạn đã trượt");
+                randomMsgFailed();
+            }
         } else {
             imgKetQua.setImageResource(R.drawable.book);
             txtMsg.setTextColor(Color.RED);
             txtMsg.setText("Bạn đã trượt");
+            txtPass.setText("(Sai câu điểm liệt)");
             randomMsgFailed();
         }
     }
@@ -61,8 +73,9 @@ public class KiemTraKetQua extends AppCompatActivity {
     }
 
     private void anhxa() {
-        TxtMsg2 = findViewById(R.id.txtMsg2);
+        txtMsg2 = findViewById(R.id.txtMsg2);
         txtDiem = findViewById(R.id.txtDiem);
+        txtPass = findViewById(R.id.txtIsPass);
         txtMsg = findViewById(R.id.txtMsg);
         imgKetQua = findViewById(R.id.imgKetQua);
     }
@@ -72,19 +85,19 @@ public class KiemTraKetQua extends AppCompatActivity {
         int randomMsg = random.nextInt(5)+1;
         switch (randomMsg) {
             case 1:
-                TxtMsg2.setText("Hãy không ngừng nỗ lực nổ đạt kết quả cao nhất bạn nhé!");
+                txtMsg2.setText("Hãy không ngừng nỗ lực nổ đạt kết quả cao nhất bạn nhé!");
                 break;
             case 2:
-                TxtMsg2.setText("Chúc mừng bạn!");
+                txtMsg2.setText("Chúc mừng bạn!");
                 break;
             case 3:
-                TxtMsg2.setText("Vnua team sẽ giúp bạn vượt qua kì thi sắp tới!");
+                txtMsg2.setText("Vnua team sẽ giúp bạn vượt qua kì thi sắp tới!");
                 break;
             case 4:
-                TxtMsg2.setText("Hãy ôn tập thật tốt nhé!");
+                txtMsg2.setText("Hãy ôn tập thật tốt nhé!");
                 break;
             default:
-                TxtMsg2.setText("Cố lên nào!");
+                txtMsg2.setText("Cố lên nào!");
         }
     }
 
@@ -93,19 +106,19 @@ public class KiemTraKetQua extends AppCompatActivity {
         int randomMsg = random.nextInt(5)+1;
         switch (randomMsg) {
             case 1:
-                TxtMsg2.setText("Không sao cả hãy cố hết sức nào!");
+                txtMsg2.setText("Không sao cả hãy cố hết sức nào!");
                 break;
             case 2:
-                TxtMsg2.setText("Bạn nên ôn tập lại kiến thức!");
+                txtMsg2.setText("Bạn nên ôn tập lại kiến thức!");
                 break;
             case 3:
-                TxtMsg2.setText("Có lẽ kiến thức của bạn vẫn còn thiếu!");
+                txtMsg2.setText("Có lẽ kiến thức của bạn vẫn còn thiếu!");
                 break;
             case 4:
-                TxtMsg2.setText("Hãy ôn tập thật tốt nhé!");
+                txtMsg2.setText("Hãy ôn tập thật tốt nhé!");
                 break;
             default:
-                TxtMsg2.setText("Chỉ là thi thử thôi cố gắng lên nào!");
+                txtMsg2.setText("Chỉ là thi thử thôi cố gắng lên nào!");
         }
     }
 }

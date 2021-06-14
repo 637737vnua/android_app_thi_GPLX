@@ -26,6 +26,7 @@ public class AdapterListQues extends ArrayAdapter<ListQuestion> {
     private SparseIntArray mSpCheckedState = new SparseIntArray();
     public boolean ans[] = new boolean[20];
     private boolean tienDo[] = new boolean[20];
+    public boolean isPass[] = new boolean[20];
     private int countSeek = 0;
     private int countChecked = 0;
 
@@ -70,6 +71,7 @@ public class AdapterListQues extends ArrayAdapter<ListQuestion> {
             holder.btnB = (RadioButton) convertView.findViewById(R.id.btnB);
             holder.btnC = (RadioButton) convertView.findViewById(R.id.btnC);
             holder.btnD = (RadioButton) convertView.findViewById(R.id.btnD);
+            holder.txtPass = (TextView) convertView.findViewById(R.id.txtPass);
             convertView.setTag(holder);
 
         } else {
@@ -87,6 +89,14 @@ public class AdapterListQues extends ArrayAdapter<ListQuestion> {
 
         ListQuestion question = listQuestions.get(position);
         int number = position+1;
+        if (question.getIsSpecial().equals("true")) {
+            isPass[position] = true;
+            holder.txtPass.setTextSize(14);
+            holder.txtPass.setText("*Câu điểm liệt!");
+        } else {
+            holder.txtPass.setTextSize(0);
+            holder.txtPass.setText("");
+        }
 
         holder.rdGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @SuppressLint("ResourceType")
@@ -104,11 +114,17 @@ public class AdapterListQues extends ArrayAdapter<ListQuestion> {
                         ans[position] = question.getAns().equals("A");
                         showToast("Check btn A" + ans[position]);
                         tienDo[position] = true;
+                        if (question.getIsSpecial().equals("true")) {
+                            isPass[position] = !question.getAns().equals("A");
+                        }
                         break;
                     case R.id.btnB:
                         ans[position] = question.getAns().equals("B");
                         showToast("Check btn B" + ans[position]);
                         tienDo[position] = true;
+                        if (question.getIsSpecial().equals("true")) {
+                            isPass[position] = !question.getAns().equals("B");
+                        }
                         break;
                     case R.id.btnC:
                         ans[position] = question.getAns().equals("C");
@@ -118,6 +134,10 @@ public class AdapterListQues extends ArrayAdapter<ListQuestion> {
                         } else {
                             tienDo[position] = true;
                         }
+
+                        if (question.getIsSpecial().equals("true")) {
+                            isPass[position] = !question.getAns().equals("C");
+                        }
                         break;
                     case R.id.btnD:
                         ans[position] = question.getAns().equals("D");
@@ -126,6 +146,10 @@ public class AdapterListQues extends ArrayAdapter<ListQuestion> {
                             tienDo[position] = false;
                         } else {
                             tienDo[position] = true;
+                        }
+
+                        if (question.getIsSpecial().equals("true")) {
+                            isPass[position] = !question.getAns().equals("D");
                         }
                         break;
                     default:
@@ -176,11 +200,8 @@ public class AdapterListQues extends ArrayAdapter<ListQuestion> {
     }
 
     private static class ViewHolder {
-        private TextView txtQues;
-        private RadioButton btnA;
-        private RadioButton btnB;
-        private RadioButton btnC;
-        private RadioButton btnD;
+        private TextView txtQues, txtPass;
+        private RadioButton btnA, btnB, btnC, btnD;
         private ImageView imgHinh;
         private RadioGroup rdGroup;
     }

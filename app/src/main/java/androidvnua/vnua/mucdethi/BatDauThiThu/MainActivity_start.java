@@ -39,6 +39,7 @@ public class MainActivity_start extends AppCompatActivity {
     private Button btnBack;
     private long timeLeftInMilliseconds = 900000; // 1p;
     private int count = 0;
+    private int countPass = 0;
     private String msg = "";
 
     @Override
@@ -78,9 +79,11 @@ public class MainActivity_start extends AppCompatActivity {
         int cauHoiD = dataCauHoi.getColumnIndex("CauHoiD");
         int image = dataCauHoi.getColumnIndex("Image");
         int dapAn = dataCauHoi.getColumnIndex("DapAn");
+        int cauDiemLiet = dataCauHoi.getColumnIndex("CauDiemLiet");
 
         while (dataCauHoi.moveToNext()) {
             int idCauHoi= dataCauHoi.getInt(id);
+            String isSpecial = dataCauHoi.getString(cauDiemLiet);
             String Ques = dataCauHoi.getString(cauhoi);
             String A = dataCauHoi.getString(cauHoiA);
             String B = dataCauHoi.getString(cauHoiB);
@@ -89,7 +92,7 @@ public class MainActivity_start extends AppCompatActivity {
             String img = dataCauHoi.getString(image);
             String Ans = dataCauHoi.getString(dapAn);
             int resID = getResId(img, R.drawable.class);
-            listQuestions.add(new ListQuestion(""+Ques, ""+A, ""+B, ""+C, ""+D, resID, ""+Ans));
+            listQuestions.add(new ListQuestion(idCauHoi, isSpecial, ""+Ques, ""+A, ""+B, ""+C, ""+D, resID, ""+Ans));
         }
 
     }
@@ -166,25 +169,35 @@ public class MainActivity_start extends AppCompatActivity {
 
         Button btnKiemTraInDiaLOg = (Button) dialog.findViewById(R.id.btnXemKQ);
         btnKiemTraInDiaLOg.setOnClickListener(new View.OnClickListener() {
-            int count = 0;
-            String s = "";
             @Override
             public void onClick(View v) {
-                for (int i = 0; i < adapter.ans.length; i++) {
-                    if (adapter.ans[i]) {
-                        count++;
-                    } {
-                        s = s +":"+i;
+                for (int i = 0; i < adapter.isPass.length; i++) {
+                    if (adapter.isPass[i]) {
+                        countPass++;
+                        msg = msg +":"+ adapter.isPass[i];
                     }
                 }
+                if (countPass > 0) {
+                    Toast.makeText(MainActivity_start.this, "Bạn đã trượt", Toast.LENGTH_LONG).show();
+                    countPass = 0;
+                    msg = "";
+                } else {
+                    for (int i = 0; i < adapter.ans.length; i++) {
+                        if (adapter.ans[i]) {
+                            count++;
+                        } {
+                            msg = msg +":"+i;
+                        }
+                    }
 
-                Intent intent = new Intent(MainActivity_start.this, KiemTraKetQua.class);
-                mcountDownTimer.cancel();
-                intent.putExtra("ma_de", maDe);
-                intent.putExtra("so_cau_dung", count);
-                intent.putExtra("cau_sai", s);
-                startActivity(intent);
-                finish();
+                    Intent intent = new Intent(MainActivity_start.this, KiemTraKetQua.class);
+                    mcountDownTimer.cancel();
+                    intent.putExtra("ma_de", maDe);
+                    intent.putExtra("so_cau_dung", count);
+                    intent.putExtra("cau_sai", msg);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }
@@ -277,13 +290,31 @@ public class MainActivity_start extends AppCompatActivity {
                     }
                 }
 
-                Intent intent = new Intent(MainActivity_start.this, KiemTraKetQua.class);
-                mcountDownTimer.cancel();
-                intent.putExtra("ma_de", maDe);
-                intent.putExtra("so_cau_dung", count);
-                intent.putExtra("cau_sai", msg);
-                startActivity(intent);
-                finish();
+                for (int i = 0; i < adapter.isPass.length; i++) {
+                    if (adapter.isPass[i]) {
+                        countPass++;
+                    }
+                }
+
+                if (countPass > 0) {
+                    Intent intent = new Intent(MainActivity_start.this, KiemTraKetQua.class);
+                    mcountDownTimer.cancel();
+                    intent.putExtra("ma_de", maDe);
+                    intent.putExtra("so_cau_dung", count);
+                    intent.putExtra("cau_sai", msg);
+                    intent.putExtra("isPass", false);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Intent intent = new Intent(MainActivity_start.this, KiemTraKetQua.class);
+                    mcountDownTimer.cancel();
+                    intent.putExtra("ma_de", maDe);
+                    intent.putExtra("so_cau_dung", count);
+                    intent.putExtra("cau_sai", msg);
+                    intent.putExtra("isPass", true);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 
