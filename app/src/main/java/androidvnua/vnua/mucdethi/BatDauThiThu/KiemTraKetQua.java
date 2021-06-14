@@ -67,7 +67,8 @@ public class KiemTraKetQua extends AppCompatActivity {
             case KeyEvent.KEYCODE_BACK:
                 Intent intent = new Intent(KiemTraKetQua.this, Home.class);
                 startActivity(intent);
-                return true;
+                finish();
+                break;
         }
         return super.onKeyDown(keyCode, event);
     }
