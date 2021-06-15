@@ -58,6 +58,8 @@ public class KiemTraKetQua extends AppCompatActivity {
             txtPass.setText("(Sai câu điểm liệt)");
             randomMsgFailed();
         }
+
+        Toast.makeText(KiemTraKetQua.this, cauSai, Toast.LENGTH_LONG).show();
     }
 
     // Xử lý khi người dùng click quay trở lại trên thanh cứng android
