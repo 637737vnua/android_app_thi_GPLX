@@ -16,6 +16,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.lang.reflect.Field;
 
+import androidvnua.vnua.CauTraLoiSai.MainActivity_CauTraLoiSai;
 import androidvnua.vnua.mucdethi.MainActivity_dethi;
 import androidvnua.vnua.database.dbCauHoi;
 
@@ -54,7 +55,7 @@ public class Home extends AppCompatActivity {
         DataBaseCauHoi();
 
         // Insert (table)
-//        InsertTableDB();
+        //InsertTableDB();
     }
 
     //  Ánh xạ button
@@ -75,7 +76,8 @@ public class Home extends AppCompatActivity {
         }else if (v == btnCauDiemLiet) {
             Toast.makeText(Home.this, "Phần câu diểm liệt", Toast.LENGTH_LONG).show();
         }else if (v == btnCauSai) {
-            Toast.makeText(Home.this, "Phần câi trả lời sai", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(Home.this, MainActivity_CauTraLoiSai.class);
+            startActivity(intent);
         }else if (v == btnHocBienBao) {
             Intent intent = new Intent(Home.this, TrafficSign.class);
             startActivity(intent);
@@ -101,11 +103,11 @@ public class Home extends AppCompatActivity {
     }
 
     // Khởi tạo, tạo tạo bảng database
-    public void DataBaseCauHoi() {
+    private void DataBaseCauHoi() {
         // Khoi tao database
         db = new dbCauHoi(this, "CauHoiDataBase.sqlite", null, 1);
 
-        // Tao bang table book
+        // Tao bang table CauHoi
         db.QueryData("CREATE TABLE IF NOT EXISTS CauHoi (" +
                 "ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " CauHoi VARCHAR(200)," +
@@ -117,10 +119,15 @@ public class Home extends AppCompatActivity {
                 " soDe INTEGER," +
                 " DapAn VARCHAR(10)," +
                 " CauDiemLiet VARCHAR(10))");
+
+        // Tao bang table CauHoiSai
+        db.QueryData("CREATE TABLE IF NOT EXISTS CauHoiSai (" +
+                "ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "IdCauHoiSai INTEGER)");
     }
 
     // Insert table vào database
-    public void InsertTableDB() {
+    private void InsertTableDB() {
         // insert
 
         // câu 1:
