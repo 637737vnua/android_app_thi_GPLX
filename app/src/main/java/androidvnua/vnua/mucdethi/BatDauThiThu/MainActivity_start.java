@@ -276,7 +276,8 @@ public class MainActivity_start extends AppCompatActivity {
             if (adapter.ans[i]) {
                 count++;
             } else {
-                msg = msg +":"+adapter.id[i];
+                // Insert (table)
+                InsertTableDB(i);
             }
         }
         for (int i = 0; i < adapter.isPass.length; i++) {
@@ -304,5 +305,11 @@ public class MainActivity_start extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+    }
+
+    // insert
+    private void InsertTableDB (int i) {
+        System.out.println(adapter.Id.get(i));
+        db.QueryData("INSERT INTO CauHoiSai VALUES (null, '"+adapter.Id.get(i)+"') ");
     }
 }

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 
+import androidvnua.vnua.mucdethi.MainActivity_dethi;
 import androidvnua.vnua.thi_gplx_21.Home;
 import androidvnua.vnua.thi_gplx_21.R;
 
@@ -24,6 +26,7 @@ public class KiemTraKetQua extends AppCompatActivity {
     private boolean isPass;
     private TextView txtDiem, txtMsg, txtMsg2, txtPass;
     private ImageView imgKetQua;
+    private Button btnBackHome, btnContinue;
 
     @SuppressLint({"SetTextI18n", "ResourceAsColor"})
     @Override
@@ -59,7 +62,12 @@ public class KiemTraKetQua extends AppCompatActivity {
             randomMsgFailed();
         }
 
+<<<<<<< HEAD
         Toast.makeText(KiemTraKetQua.this, cauSai, Toast.LENGTH_LONG).show();
+=======
+        // Button xử lý back Home or Continue
+        BtnBack();
+>>>>>>> aab681ce33f671ea34289c4fd7885f8d160709dc
     }
 
     // Xử lý khi người dùng click quay trở lại trên thanh cứng android
@@ -81,6 +89,8 @@ public class KiemTraKetQua extends AppCompatActivity {
         txtPass = findViewById(R.id.txtIsPass);
         txtMsg = findViewById(R.id.txtMsg);
         imgKetQua = findViewById(R.id.imgKetQua);
+        btnBackHome = findViewById(R.id.btnHome);
+        btnContinue = findViewById(R.id.btnContinue);
     }
 
     private void randomMsgSuccess() {
@@ -123,5 +133,23 @@ public class KiemTraKetQua extends AppCompatActivity {
             default:
                 txtMsg2.setText("Chỉ là thi thử thôi cố gắng lên nào!");
         }
+    }
+
+    private void BtnBack() {
+        btnBackHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(KiemTraKetQua.this, Home.class);
+                startActivity(intent);
+            }
+        });
+
+        btnContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(KiemTraKetQua.this, MainActivity_dethi.class);
+                startActivity(intent);
+            }
+        });
     }
 }
