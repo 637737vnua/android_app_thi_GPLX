@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="10sp"
     app:cardCornerRadius="8dp">
 
@@ -10,24 +11,39 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:background="@color/bgr_causai">
+        android:background="@color/bgr_causai"
+        android:weightSum="9">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/tv_id"
             android:text="Câu 1:"
             android:layout_gravity="center"
             android:textColor="@color/white"
             android:padding="10sp"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:layout_weight="3"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:justificationMode="inter_word"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="6"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/tv_cauhoisai"
             android:text="@string/app_name"
             android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/tv_dapan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:padding="10sp"
+            android:text="Đáp án: A"
+            android:textColor="@color/white"
             android:textSize="16sp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -37,6 +37,7 @@ public class AdapterCauHoiSai extends RecyclerView.Adapter<AdapterCauHoiSai.CauH
         }
         holder.tvCauHoiSai.setText(objCauTraLoiSai.getCauHoiSai());
         holder.tvId.setText("Câu " + objCauTraLoiSai.getIdCauHoiSai() + ":");
+        holder.tvDapAn.setText("Đáp án: " + objCauTraLoiSai.getDapAn());
     }
 
     @Override
@@ -49,12 +50,13 @@ public class AdapterCauHoiSai extends RecyclerView.Adapter<AdapterCauHoiSai.CauH
 
     public class CauHoiSaiViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvCauHoiSai, tvId;
+        TextView tvCauHoiSai, tvId, tvDapAn;
 
         public CauHoiSaiViewHolder(@NonNull View itemView) {
             super(itemView);
             tvCauHoiSai = itemView.findViewById(R.id.tv_cauhoisai);
             tvId = itemView.findViewById(R.id.tv_id);
+            tvDapAn = itemView.findViewById(R.id.tv_dapan);
         }
     }
 }

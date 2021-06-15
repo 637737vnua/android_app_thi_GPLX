@@ -1,11 +1,12 @@
 package androidvnua.vnua.CauTraLoiSai;
 
 public class ObjCauTraLoiSai {
-    private String CauHoiSai;
+    private String CauHoiSai, dapAn;
     private int IdCauHoiSai;
 
-    public ObjCauTraLoiSai(String cauHoiSai, int idCauHoiSai) {
+    public ObjCauTraLoiSai(String cauHoiSai, String dapAn, int idCauHoiSai) {
         CauHoiSai = cauHoiSai;
+        this.dapAn = dapAn;
         IdCauHoiSai = idCauHoiSai;
     }
 
@@ -15,6 +16,14 @@ public class ObjCauTraLoiSai {
 
     public void setCauHoiSai(String cauHoiSai) {
         CauHoiSai = cauHoiSai;
+    }
+
+    public String getDapAn() {
+        return dapAn;
+    }
+
+    public void setDapAn(String dapAn) {
+        this.dapAn = dapAn;
     }
 
     public int getIdCauHoiSai() {
