@@ -64,8 +64,9 @@ public class MainActivity_CauTraLoiSai extends AppCompatActivity {
             while (cursorCauHoi.moveToNext()) {
                 int idCauHoi = cursorCauHoi.getInt(0);
                 String CauHoi = cursorCauHoi.getString(1);
+                String dapAn = cursorCauHoi.getString(8);
                 System.out.println("Câu hỏi là: " + CauHoi);
-                arrayList.add(new ObjCauTraLoiSai(CauHoi, idCauHoi));
+                arrayList.add(new ObjCauTraLoiSai(CauHoi, dapAn, idCauHoi));
             }
             System.out.println("Câu hỏi sai là: " + idCauHoiSai);
         }
