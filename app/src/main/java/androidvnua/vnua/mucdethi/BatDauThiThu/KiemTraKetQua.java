@@ -62,12 +62,7 @@ public class KiemTraKetQua extends AppCompatActivity {
             randomMsgFailed();
         }
 
-<<<<<<< HEAD
-        Toast.makeText(KiemTraKetQua.this, cauSai, Toast.LENGTH_LONG).show();
-=======
-        // Button xử lý back Home or Continue
         BtnBack();
->>>>>>> aab681ce33f671ea34289c4fd7885f8d160709dc
     }
 
     // Xử lý khi người dùng click quay trở lại trên thanh cứng android

@@ -277,7 +277,7 @@ public class MainActivity_start extends AppCompatActivity {
                 count++;
             } else {
                 // Insert (table)
-                InsertTableDB(i);
+                InsertTableDB(adapter.Id.get(i));
             }
         }
         for (int i = 0; i < adapter.isPass.length; i++) {
