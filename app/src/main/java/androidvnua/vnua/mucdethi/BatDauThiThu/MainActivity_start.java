@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -35,13 +36,13 @@ public class MainActivity_start extends AppCompatActivity {
     private AdapterListQues adapter;
     private ListView listView;
     private TextView txtCountDown, txtDe;
-    private Button btnChecked;
+    private Button btnChecked, btnBack;
     private CountDownTimer mcountDownTimer;
-    private Button btnBack;
-    private long timeLeftInMilliseconds = 900000; // 1p;
+    private long timeLeftInMilliseconds = 6000; // 1p;
     private int count = 0;
     private int countPass = 0;
     private String msg = "";
+    final Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,7 +128,14 @@ public class MainActivity_start extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                dialogHetGio();
+                scrollMyListViewToBottom();
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        dialogHetGio();
+                    }
+                }, 400);
             }
         }.start();
     }
@@ -274,8 +282,12 @@ public class MainActivity_start extends AppCompatActivity {
     private void xuli() {
         for (int i = 0; i < adapter.ans.length; i++) {
             if (adapter.ans[i]) {
+                System.out.println("Chay vao dap an dung");
                 count++;
+                System.out.println("dap an dung:" + adapter.ans[i]);
             } else {
+                System.out.println("Chay vao dap an Sai");
+                System.out.println("Dap an sai: " + adapter.Id.get(i));
                 // Insert (table)
                 InsertTableDB(i);
             }
@@ -309,7 +321,17 @@ public class MainActivity_start extends AppCompatActivity {
 
     // insert
     private void InsertTableDB (int i) {
-        System.out.println(adapter.Id.get(i));
+        System.out.println("Get id: " + adapter.Id.get(i));
         db.QueryData("INSERT INTO CauHoiSai VALUES (null, '"+adapter.Id.get(i)+"') ");
+    }
+
+    // hàm auto cuộn xuống dưới
+    void scrollMyListViewToBottom() {
+        listView.post(new Runnable() {
+            @Override
+            public void run() {
+                listView.smoothScrollToPosition(adapter.getCount()-1);
+            }
+        });
     }
 }

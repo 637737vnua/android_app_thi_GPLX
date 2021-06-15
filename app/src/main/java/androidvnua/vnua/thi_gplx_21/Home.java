@@ -129,7 +129,7 @@ public class Home extends AppCompatActivity {
     // Insert table vào database
     private void InsertTableDB() {
         // insert
-
+        System.out.println("Vao day");
         // câu 1:
         db.QueryData("INSERT INTO CauHoi" +
                 " VALUES " +
