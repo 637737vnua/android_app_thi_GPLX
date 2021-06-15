@@ -65,8 +65,18 @@ public class MainActivity_CauTraLoiSai extends AppCompatActivity {
                 int idCauHoi = cursorCauHoi.getInt(0);
                 String CauHoi = cursorCauHoi.getString(1);
                 String dapAn = cursorCauHoi.getString(8);
-                System.out.println("Câu hỏi là: " + CauHoi);
-                arrayList.add(new ObjCauTraLoiSai(CauHoi, dapAn, idCauHoi));
+                String textDapAn ="";
+                if (dapAn.equals("A")) {
+                    textDapAn = cursorCauHoi.getString(2);
+                } else if (dapAn.equals("B")) {
+                    textDapAn = cursorCauHoi.getString(3);
+                } else if (dapAn.equals("C")) {
+                    textDapAn = cursorCauHoi.getString(4);
+                } else if (dapAn.equals("D")) {
+                    textDapAn = cursorCauHoi.getString(5);
+                }
+                String value = dapAn +". "+ textDapAn;
+                arrayList.add(new ObjCauTraLoiSai(CauHoi.trim(), value.trim(), idCauHoi));
             }
             System.out.println("Câu hỏi sai là: " + idCauHoiSai);
         }

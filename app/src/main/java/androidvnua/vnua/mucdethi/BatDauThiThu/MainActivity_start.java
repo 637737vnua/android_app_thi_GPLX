@@ -38,7 +38,7 @@ public class MainActivity_start extends AppCompatActivity {
     private Button btnChecked;
     private CountDownTimer mcountDownTimer;
     private Button btnBack;
-    private long timeLeftInMilliseconds = 900000; // 1p;
+    private long timeLeftInMilliseconds = 10000; // 1p;
     private int count = 0;
     private int countPass = 0;
     private String msg = "";
@@ -162,6 +162,7 @@ public class MainActivity_start extends AppCompatActivity {
     }
 
     private void dialogHetGio() {
+        scrollMyListViewToBottom();
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_custom_thi);
         dialog.show();
@@ -277,7 +278,7 @@ public class MainActivity_start extends AppCompatActivity {
                 count++;
             } else {
                 // Insert (table)
-                InsertTableDB(adapter.Id.get(i));
+                InsertTableDB(i);
             }
         }
         for (int i = 0; i < adapter.isPass.length; i++) {
@@ -311,5 +312,14 @@ public class MainActivity_start extends AppCompatActivity {
     private void InsertTableDB (int i) {
         System.out.println(adapter.Id.get(i));
         db.QueryData("INSERT INTO CauHoiSai VALUES (null, '"+adapter.Id.get(i)+"') ");
+    }
+
+    void scrollMyListViewToBottom() {
+        listView.post(new Runnable() {
+            @Override
+            public void run() {
+                listView.smoothScrollToPosition(adapter.getCount()-1);
+            }
+        });
     }
 }

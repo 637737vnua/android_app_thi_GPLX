@@ -36,8 +36,8 @@ public class AdapterCauHoiSai extends RecyclerView.Adapter<AdapterCauHoiSai.CauH
             return;
         }
         holder.tvCauHoiSai.setText(objCauTraLoiSai.getCauHoiSai());
-        holder.tvId.setText("Câu " + objCauTraLoiSai.getIdCauHoiSai() + ":");
-        holder.tvDapAn.setText("Đáp án: " + objCauTraLoiSai.getDapAn());
+        holder.tvId.setText("Mã câu: " + objCauTraLoiSai.getIdCauHoiSai());
+        holder.tvDapAn.setText("Đáp án đúng: " + objCauTraLoiSai.getDapAn());
     }
 
     @Override

@@ -18,8 +18,8 @@
         android:textAllCaps="true"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rcv"
-        android:layout_margin="10sp"/>
+        android:layout_margin="10sp" />
 </LinearLayout>

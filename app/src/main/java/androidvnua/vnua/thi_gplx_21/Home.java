@@ -123,7 +123,8 @@ public class Home extends AppCompatActivity {
         // Tao bang table CauHoiSai
         db.QueryData("CREATE TABLE IF NOT EXISTS CauHoiSai (" +
                 "ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "IdCauHoiSai INTEGER)");
+                "IdCauHoiSai INTEGER NOT NULL UNIQUE)");
+        db.QueryData("Delete from CauHoiSai");
     }
 
     // Insert table vào database
