@@ -2,10 +2,7 @@ package androidvnua.vnua.thi_gplx_21;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,8 +11,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
-import java.lang.reflect.Field;
-
 import androidvnua.vnua.CauTraLoiSai.MainActivity_CauTraLoiSai;
 import androidvnua.vnua.caudiemliet.CauDiemLiet;
 import androidvnua.vnua.mucdethi.MainActivity_dethi;
@@ -23,8 +18,6 @@ import androidvnua.vnua.database.dbCauHoi;
 import androidvnua.vnua.ontapcauhoi.OnTapCauHoi;
 
 public class Home extends AppCompatActivity {
-
-    private ImageView iconMenu;
 
     //  Khai báo button
     ConstraintLayout
@@ -62,12 +55,12 @@ public class Home extends AppCompatActivity {
 
     //  Ánh xạ button
     public void goibutton() {
-        btnThiThu = (ConstraintLayout) findViewById(R.id.btnBatDauThi);
-        btnCauDiemLiet = (ConstraintLayout) findViewById(R.id.btnCauDiemLiet);
-        btnHocBienBao = (ConstraintLayout) findViewById(R.id.btnCacBienBao);
-        btnCauSai = (ConstraintLayout) findViewById(R.id.btnCauSai);
-        btnOnTap = (ConstraintLayout) findViewById(R.id.btnThiSaHinh);
-        btnMeoThi = (ConstraintLayout) findViewById(R.id.btnMeoThi);
+        btnThiThu = findViewById(R.id.btnBatDauThi);
+        btnCauDiemLiet = findViewById(R.id.btnCauDiemLiet);
+        btnHocBienBao = findViewById(R.id.btnCacBienBao);
+        btnCauSai = findViewById(R.id.btnCauSai);
+        btnOnTap = findViewById(R.id.btnThiSaHinh);
+        btnMeoThi = findViewById(R.id.btnMeoThi);
     }
 
     //  Hàm sự kiện Click
