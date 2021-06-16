@@ -17,8 +17,10 @@ import com.google.android.material.navigation.NavigationView;
 import java.lang.reflect.Field;
 
 import androidvnua.vnua.CauTraLoiSai.MainActivity_CauTraLoiSai;
+import androidvnua.vnua.caudiemliet.CauDiemLiet;
 import androidvnua.vnua.mucdethi.MainActivity_dethi;
 import androidvnua.vnua.database.dbCauHoi;
+import androidvnua.vnua.ontapcauhoi.OnTapCauHoi;
 
 public class Home extends AppCompatActivity {
 
@@ -30,7 +32,7 @@ public class Home extends AppCompatActivity {
             btnCauDiemLiet,
             btnHocBienBao,
             btnCauSai,
-            btnThiSaHinh,
+            btnOnTap,
             btnMeoThi;
 
     //Menu bar
@@ -64,7 +66,7 @@ public class Home extends AppCompatActivity {
         btnCauDiemLiet = (ConstraintLayout) findViewById(R.id.btnCauDiemLiet);
         btnHocBienBao = (ConstraintLayout) findViewById(R.id.btnCacBienBao);
         btnCauSai = (ConstraintLayout) findViewById(R.id.btnCauSai);
-        btnThiSaHinh = (ConstraintLayout) findViewById(R.id.btnThiSaHinh);
+        btnOnTap = (ConstraintLayout) findViewById(R.id.btnThiSaHinh);
         btnMeoThi = (ConstraintLayout) findViewById(R.id.btnMeoThi);
     }
 
@@ -73,16 +75,22 @@ public class Home extends AppCompatActivity {
         if (v == btnThiThu) {
             Intent intent = new Intent(Home.this, MainActivity_dethi.class);
             startActivity(intent);
+            finish();
         }else if (v == btnCauDiemLiet) {
-            Toast.makeText(Home.this, "Phần câu diểm liệt", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(Home.this, CauDiemLiet.class);
+            startActivity(intent);
+            finish();
         }else if (v == btnCauSai) {
             Intent intent = new Intent(Home.this, MainActivity_CauTraLoiSai.class);
             startActivity(intent);
+            finish();
         }else if (v == btnHocBienBao) {
             Intent intent = new Intent(Home.this, TrafficSign.class);
             startActivity(intent);
-        }else if (v == btnThiSaHinh) {
-            Toast.makeText(Home.this, "Phần thi sa hình", Toast.LENGTH_LONG).show();
+        }else if (v == btnOnTap) {
+            Intent intent = new Intent(Home.this, OnTapCauHoi.class);
+            startActivity(intent);
+            finish();
         }else if (v == btnMeoThi) {
             Intent intent = new Intent(Home.this, Tutorial.class);
             startActivity(intent);
@@ -124,13 +132,13 @@ public class Home extends AppCompatActivity {
         db.QueryData("CREATE TABLE IF NOT EXISTS CauHoiSai (" +
                 "ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "IdCauHoiSai INTEGER NOT NULL UNIQUE)");
-        db.QueryData("Delete from CauHoiSai");
+//        db.QueryData("Delete from CauHoiSai");
     }
 
     // Insert table vào database
     private void InsertTableDB() {
         // insert
-
+        System.out.println("Vao day");
         // câu 1:
         db.QueryData("INSERT INTO CauHoi" +
                 " VALUES " +

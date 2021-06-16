@@ -4,13 +4,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import androidvnua.vnua.caudiemliet.CauDiemLiet;
 import androidvnua.vnua.database.dbCauHoi;
+import androidvnua.vnua.thi_gplx_21.Home;
 import androidvnua.vnua.thi_gplx_21.R;
 
 public class MainActivity_CauTraLoiSai extends AppCompatActivity {
@@ -19,6 +31,7 @@ public class MainActivity_CauTraLoiSai extends AppCompatActivity {
     private AdapterCauHoiSai adapterCauHoiSai;
     private ArrayList<ObjCauTraLoiSai> arrayList;
     private dbCauHoi db;
+    private ImageView btnBack, btnHelp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +46,7 @@ public class MainActivity_CauTraLoiSai extends AppCompatActivity {
 
         // Khởi tạo hàm + adapter
         InitArrayAndAdapter();
+        click();
     }
 
     private void connectDB() {
@@ -41,6 +55,8 @@ public class MainActivity_CauTraLoiSai extends AppCompatActivity {
 
     private void init () {
         rcv = (RecyclerView) findViewById(R.id.rcv);
+        btnBack = findViewById(R.id.btnBackEr);
+        btnHelp = findViewById(R.id.btnTutorialEr);
     }
 
     private void InitArrayAndAdapter() {
@@ -80,5 +96,45 @@ public class MainActivity_CauTraLoiSai extends AppCompatActivity {
             }
             System.out.println("Câu hỏi sai là: " + idCauHoiSai);
         }
+    }
+
+    private void click() {
+        btnHelp.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                Dialog dialog = new Dialog(MainActivity_CauTraLoiSai.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_tutorial);
+                TextView title = dialog.findViewById(R.id.txtTitleTutorial);
+                TextView text = dialog.findViewById(R.id.txtTutorial);
+
+                title.setText("Chú ý!");
+                text.setText("Đây là phần những câu bạn đã trả lời sai, hãy ôn tập lại những kiến thức này!");
+
+                Window window = dialog.getWindow();
+                if (window == null) {
+                    return;
+                }
+
+                window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                WindowManager.LayoutParams windowAttribute = window.getAttributes();
+                windowAttribute.gravity = Gravity.CENTER;
+                window.setAttributes(windowAttribute);
+
+                dialog.show();
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity_CauTraLoiSai.this, Home.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

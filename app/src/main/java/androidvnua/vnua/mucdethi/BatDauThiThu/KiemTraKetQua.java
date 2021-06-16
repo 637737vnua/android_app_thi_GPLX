@@ -136,6 +136,7 @@ public class KiemTraKetQua extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(KiemTraKetQua.this, Home.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -144,6 +145,7 @@ public class KiemTraKetQua extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(KiemTraKetQua.this, MainActivity_dethi.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

@@ -176,7 +176,8 @@ public class AdapterListQues extends ArrayAdapter<ListQuestion> {
             holder.imgHinh.getLayoutParams().height = 300;
             holder.imgHinh.setImageResource(question.getHinhAnh());
         } else {
-            holder.imgHinh.getLayoutParams().height = 0;
+            holder.imgHinh.setImageResource(question.getHinhAnh());
+            holder.imgHinh.getLayoutParams().height = 1;
         }
         holder.txtQues.setText( "Câu " +number+": "+  question.getQues());
 

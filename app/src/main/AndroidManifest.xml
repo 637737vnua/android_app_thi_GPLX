@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Thi_GPLX_21">
-        <activity android:name="androidvnua.vnua.CauTraLoiSai.MainActivity_CauTraLoiSai"></activity>
+        <activity android:name="androidvnua.vnua.ontapcauhoi.OnTapCauHoi"></activity>
+        <activity android:name="androidvnua.vnua.caudiemliet.CauDiemLiet" />
+        <activity android:name="androidvnua.vnua.CauTraLoiSai.MainActivity_CauTraLoiSai" />
         <activity android:name="androidvnua.vnua.mucdethi.BatDauThiThu.KiemTraKetQua" />
         <activity android:name="androidvnua.vnua.mucdethi.BatDauThiThu.MainActivity_start" />
         <activity android:name="androidvnua.vnua.mucdethi.MainActivity_dethi" />

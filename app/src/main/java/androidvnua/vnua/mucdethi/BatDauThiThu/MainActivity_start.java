@@ -8,14 +8,13 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +24,8 @@ import java.util.ArrayList;
 import androidvnua.vnua.database.dbCauHoi;
 import androidvnua.vnua.mucdethi.AdapterListQues;
 import androidvnua.vnua.mucdethi.ListQuestion;
+import androidvnua.vnua.mucdethi.MainActivity_dethi;
+import androidvnua.vnua.thi_gplx_21.Home;
 import androidvnua.vnua.thi_gplx_21.R;
 
 public class MainActivity_start extends AppCompatActivity {
@@ -35,13 +36,15 @@ public class MainActivity_start extends AppCompatActivity {
     private AdapterListQues adapter;
     private ListView listView;
     private TextView txtCountDown, txtDe;
-    private Button btnChecked;
-    private CountDownTimer mcountDownTimer;
     private Button btnBack;
+    private CountDownTimer mcountDownTimer;
     private long timeLeftInMilliseconds = 10000; // 1p;
+    private boolean isUnique = true;
     private int count = 0;
     private int countPass = 0;
     private String msg = "";
+    final Handler handler = new Handler();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,10 +102,10 @@ public class MainActivity_start extends AppCompatActivity {
     }
 
     private void anhxa() {
-        listView = (ListView) findViewById(R.id.listStart);
-        txtCountDown = (TextView) findViewById(R.id.txtCountDown);
-        btnBack = (Button) findViewById(R.id.back);
-        txtDe = (TextView) findViewById(R.id.txtSoDe);
+        listView = findViewById(R.id.listStart);
+        txtCountDown = findViewById(R.id.txtCountDown);
+        btnBack = findViewById(R.id.back);
+        txtDe = findViewById(R.id.txtSoDe);
         listQuestions = new ArrayList<>();
     }
 
@@ -127,7 +130,14 @@ public class MainActivity_start extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                dialogHetGio();
+
+                scrollMyListViewToBottom();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        dialogHetGio();
+                    }
+                }, 800);
             }
         }.start();
     }
@@ -162,14 +172,13 @@ public class MainActivity_start extends AppCompatActivity {
     }
 
     private void dialogHetGio() {
-        scrollMyListViewToBottom();
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_custom_thi);
         dialog.show();
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
 
-        Button btnKiemTraInDiaLOg = (Button) dialog.findViewById(R.id.btnXemKQ);
+        Button btnKiemTraInDiaLOg = dialog.findViewById(R.id.btnXemKQ);
         btnKiemTraInDiaLOg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -202,6 +211,8 @@ public class MainActivity_start extends AppCompatActivity {
         b.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 mcountDownTimer.cancel();
+                Intent intent = new Intent(MainActivity_start.this, Home.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -219,7 +230,7 @@ public class MainActivity_start extends AppCompatActivity {
     }
 
     public void CreateBtn () {
-        btnChecked = new Button(this);
+        Button btnChecked = new Button(this);
 
         btnChecked.setText("Nộp Bài");
         btnChecked.setGravity(Gravity.CENTER);
@@ -310,10 +321,17 @@ public class MainActivity_start extends AppCompatActivity {
 
     // insert
     private void InsertTableDB (int i) {
-        System.out.println(adapter.Id.get(i));
-        db.QueryData("INSERT INTO CauHoiSai VALUES (null, '"+adapter.Id.get(i)+"') ");
+        Cursor dataCauSai = db.GetData("SELECT * FROM CauHoiSai WHERE IdCauHoiSai ="+ adapter.Id.get(i));
+        while (dataCauSai.moveToNext()) {
+            isUnique = false;
+        }
+
+        if (isUnique) {
+            db.QueryData("INSERT INTO CauHoiSai VALUES (null, '"+adapter.Id.get(i)+"') ");
+        }
     }
 
+    // hàm auto cuộn xuống dưới
     void scrollMyListViewToBottom() {
         listView.post(new Runnable() {
             @Override
