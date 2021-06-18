@@ -1,4 +1,4 @@
-package androidvnua.vnua.thi_gplx_21;
+package androidvnua.vnua.listtraffic;
 
 public class Traffic {
 
