@@ -11,17 +11,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import androidvnua.vnua.listtraffic.TrafficSign;
-=======
 import androidvnua.vnua.CauTraLoiSai.MainActivity_CauTraLoiSai;
 import androidvnua.vnua.caudiemliet.CauDiemLiet;
->>>>>>> 5fb2372f576868132e3e81a7a3cbe2dc1a9f5bfc
-=======
-import androidvnua.vnua.CauTraLoiSai.MainActivity_CauTraLoiSai;
-import androidvnua.vnua.caudiemliet.CauDiemLiet;
->>>>>>> 5fb2372f576868132e3e81a7a3cbe2dc1a9f5bfc
 import androidvnua.vnua.mucdethi.MainActivity_dethi;
 import androidvnua.vnua.database.dbCauHoi;
 import androidvnua.vnua.ontapcauhoi.OnTapCauHoi;
