@@ -1,10 +1,12 @@
-package androidvnua.vnua.thi_gplx_21;
+package androidvnua.vnua.listtraffic;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import androidvnua.vnua.thi_gplx_21.R;
 
 public class TrafficInfor extends AppCompatActivity {
     TextView nameTraffic;

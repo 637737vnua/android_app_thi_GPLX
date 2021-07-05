@@ -11,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
+import androidvnua.vnua.listtraffic.TrafficSign;
 import androidvnua.vnua.CauTraLoiSai.MainActivity_CauTraLoiSai;
 import androidvnua.vnua.caudiemliet.CauDiemLiet;
 import androidvnua.vnua.mucdethi.MainActivity_dethi;
@@ -50,7 +51,7 @@ public class Home extends AppCompatActivity {
         DataBaseCauHoi();
 
         // Insert (table)
-        InsertTableDB();
+//        InsertTableDB();
     }
 
     //  Ánh xạ button

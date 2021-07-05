@@ -1,4 +1,4 @@
-package androidvnua.vnua.thi_gplx_21;
+package androidvnua.vnua.listtraffic;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+
+import androidvnua.vnua.thi_gplx_21.R;
 
 public class Adapter extends ArrayAdapter<Traffic> {
     private final Context mContext;
