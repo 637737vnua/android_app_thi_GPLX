@@ -131,8 +131,6 @@ public class MainActivity_CauTraLoiSai extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity_CauTraLoiSai.this, Home.class);
-                startActivity(intent);
                 finish();
             }
         });

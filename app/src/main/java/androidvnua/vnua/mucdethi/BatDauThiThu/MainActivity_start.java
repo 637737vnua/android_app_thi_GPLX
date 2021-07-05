@@ -38,13 +38,12 @@ public class MainActivity_start extends AppCompatActivity {
     private TextView txtCountDown, txtDe;
     private Button btnBack;
     private CountDownTimer mcountDownTimer;
-    private long timeLeftInMilliseconds = 10000; // 1p;
+    private long timeLeftInMilliseconds = 1261000;
     private boolean isUnique = true;
     private int count = 0;
     private int countPass = 0;
     private String msg = "";
     final Handler handler = new Handler();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,31 +192,39 @@ public class MainActivity_start extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch(keyCode){
             case KeyEvent.KEYCODE_BACK:
-                DiaLogBack("Bạn có muốn dừng làm bài không?");
+                diaLog("Xác nhận","Bài thi của bạn chưa hoàn thành, bạn có muốn đóng ứng dụng?","Đồng ý", "không đồng ý", 1);
                 return true;
         }
         return super.onKeyDown(keyCode, event);
     }
 
     // Function DiaLogBack xử lý thông báo
-    public void DiaLogBack(String title) {
+    public void diaLog(String title, String msg, String txtYes, String txtNo, int option) {
         //Tạo đối tượng
         AlertDialog.Builder b = new AlertDialog.Builder(this);
         b.setCancelable(false);
         //Thiết lập tiêu đề
-        b.setTitle("Xác nhận");
-        b.setMessage(title);
+        b.setTitle(title);
+        b.setMessage(msg);
         // Nút Ok
-        b.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+        b.setPositiveButton(txtYes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 mcountDownTimer.cancel();
-                Intent intent = new Intent(MainActivity_start.this, Home.class);
-                startActivity(intent);
-                finish();
+                if (option == 1) {
+                    MainActivity_start.this.finishAffinity();
+                }
+                else if (option == 2) {
+                    xuli();
+                }
+                else {
+                    Intent intent = new Intent(MainActivity_start.this, MainActivity_dethi.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
         //Nút Cancel
-        b.setNegativeButton("Không đồng ý", new DialogInterface.OnClickListener() {
+        b.setNegativeButton(txtNo, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.cancel();
             }
@@ -247,7 +254,7 @@ public class MainActivity_start extends AppCompatActivity {
         btnChecked.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DiaLogCheck("Vẫn còn thời gian bạn muốn nộp bài không?");
+                diaLog("Xác nhận nộp bài","Vẫn còn thời gian bạn muốn nộp bài không?","Đồng ý", "Chưa nộp", 2 );
             }
         });
     }
@@ -256,31 +263,9 @@ public class MainActivity_start extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DiaLogBack("Bạn có muốn dừng làm bài không?");
+                diaLog("Xác nhận","Bạn có muốn dừng làm bài không?","Đồng ý", "Không đồng ý", -1);
             }
         });
-    }
-
-    public void DiaLogCheck(String title) {
-
-        AlertDialog.Builder b = new AlertDialog.Builder(this);
-        b.setCancelable(false);
-        b.setTitle("Xác nhận nộp bài");
-        b.setMessage(title);
-        b.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                xuli();
-            }
-        });
-
-        b.setNegativeButton("Chưa nộp bài", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-            }
-        });
-
-        AlertDialog al = b.create();
-        al.show();
     }
 
     private void xuli() {
@@ -292,31 +277,25 @@ public class MainActivity_start extends AppCompatActivity {
                 InsertTableDB(i);
             }
         }
+
         for (int i = 0; i < adapter.isPass.length; i++) {
             if (adapter.isPass[i]) {
                 countPass++;
             }
         }
 
+        Intent intent = new Intent(MainActivity_start.this, KiemTraKetQua.class);
+        mcountDownTimer.cancel();
+        intent.putExtra("ma_de", maDe);
+        intent.putExtra("so_cau_dung", count);
+        intent.putExtra("cau_sai", msg);
         if (countPass > 0) {
-            Intent intent = new Intent(MainActivity_start.this, KiemTraKetQua.class);
-            mcountDownTimer.cancel();
-            intent.putExtra("ma_de", maDe);
-            intent.putExtra("so_cau_dung", count);
-            intent.putExtra("cau_sai", msg);
             intent.putExtra("isPass", false);
-            startActivity(intent);
-            finish();
         } else {
-            Intent intent = new Intent(MainActivity_start.this, KiemTraKetQua.class);
-            mcountDownTimer.cancel();
-            intent.putExtra("ma_de", maDe);
-            intent.putExtra("so_cau_dung", count);
-            intent.putExtra("cau_sai", msg);
             intent.putExtra("isPass", true);
-            startActivity(intent);
-            finish();
         }
+        startActivity(intent);
+        finish();
     }
 
     // insert

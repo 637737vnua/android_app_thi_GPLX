@@ -131,8 +131,6 @@ public class CauDiemLiet extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CauDiemLiet.this, Home.class);
-                startActivity(intent);
                 finish();
             }
         });

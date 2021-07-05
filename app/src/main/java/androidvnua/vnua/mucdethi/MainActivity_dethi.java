@@ -123,8 +123,6 @@ public class MainActivity_dethi extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity_dethi.this, Home.class);
-                startActivity(intent);
                 finish();
             }
         });

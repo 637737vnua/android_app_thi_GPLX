@@ -28,18 +28,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:padding="8dp"
-            android:background="#0468FF"
             android:layout_width="match_parent"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:titleTextColor="@color/white"
-            app:subtitleTextColor="@color/white"
             android:layout_height="0dp"
-            android:layout_weight="1">
-        </androidx.appcompat.widget.Toolbar>
+            android:layout_weight="1"
+            android:background="#3082FF"
+            android:minHeight="?attr/actionBarSize"
+            android:padding="8dp"
+            android:theme="?attr/actionBarTheme"
+            app:subtitleTextColor="@color/white"
+            app:titleTextColor="@color/white"></androidx.appcompat.widget.Toolbar>
 
         <LinearLayout
             android:layout_weight="9"
@@ -63,7 +63,7 @@
                     android:layout_height="0dp"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
-                    android:background="#26CA01"
+                    android:background="@drawable/custom_btn_home_1"
                     android:onClick="onClick">
 
                     <ImageView
@@ -97,7 +97,7 @@
                     android:layout_height="0dp"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
-                    android:background="#FFBF00"
+                    android:background="@drawable/custom_btn_home_3"
                     android:onClick="onClick">
 
                     <ImageView
@@ -130,7 +130,7 @@
                     android:layout_height="0dp"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
-                    android:background="#6A3030"
+                    android:background="@drawable/custom_btn_home_5"
                     android:onClick="onClick">
 
                     <ImageView
@@ -172,7 +172,7 @@
                     android:layout_height="0dp"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
-                    android:background="#FF0000"
+                    android:background="@drawable/custom_btn_home_2"
                     android:onClick="onClick">
 
                     <ImageView
@@ -205,7 +205,7 @@
                     android:layout_height="0dp"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
-                    android:background="#9500FF"
+                    android:background="@drawable/custom_btn_home_4"
                     android:onClick="onClick">
 
                     <ImageView
@@ -238,7 +238,7 @@
                     android:layout_height="0dp"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
-                    android:background="#A1A1A1"
+                    android:background="@drawable/custom_btn_home_6"
                     android:onClick="onClick">
 
                     <ImageView

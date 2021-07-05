@@ -100,8 +100,6 @@ public class OnTapCauHoi extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OnTapCauHoi.this, Home.class);
-                startActivity(intent);
                 finish();
             }
         });
