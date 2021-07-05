@@ -1,11 +1,14 @@
 package androidvnua.vnua.CauTraLoiSai;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -17,6 +20,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -28,10 +32,11 @@ import androidvnua.vnua.thi_gplx_21.R;
 public class MainActivity_CauTraLoiSai extends AppCompatActivity {
 
     private RecyclerView rcv;
+    private View layoutMsg;
     private AdapterCauHoiSai adapterCauHoiSai;
     private ArrayList<ObjCauTraLoiSai> arrayList;
     private dbCauHoi db;
-    private ImageView btnBack, btnHelp;
+    private ImageView btnBack, btnHelp, btnDel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,19 +60,29 @@ public class MainActivity_CauTraLoiSai extends AppCompatActivity {
 
     private void init () {
         rcv = (RecyclerView) findViewById(R.id.rcv);
+        layoutMsg = findViewById(R.id.layoutErMsg);
         btnBack = findViewById(R.id.btnBackEr);
         btnHelp = findViewById(R.id.btnTutorialEr);
+        btnDel = findViewById(R.id.btnDelEr);
     }
 
     private void InitArrayAndAdapter() {
         arrayList = new ArrayList<>();
 
         // add item từ database
+        arrayList.clear();
         addArrayList();
-        adapterCauHoiSai = new AdapterCauHoiSai(this, arrayList);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        rcv.setLayoutManager(linearLayoutManager);
-        rcv.setAdapter(adapterCauHoiSai);
+        if (arrayList.size() >= 1) {
+            rcv.setVisibility(View.VISIBLE);
+            layoutMsg.setVisibility(View.GONE);
+            adapterCauHoiSai = new AdapterCauHoiSai(this, arrayList);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            rcv.setLayoutManager(linearLayoutManager);
+            rcv.setAdapter(adapterCauHoiSai);
+        } else {
+            layoutMsg.setVisibility(View.VISIBLE);
+            rcv.setVisibility(View.GONE);
+        }
     }
 
     private void addArrayList () {
@@ -134,5 +149,43 @@ public class MainActivity_CauTraLoiSai extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (arrayList.size() >=1 ) {
+                    diaLog("Bạn có muốn xóa danh sách các câu đã trả lời sai không?");
+                } else {
+                    Toast.makeText(MainActivity_CauTraLoiSai.this, "Không có gì để xóa cả :((", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    public void diaLog(String title) {
+        //Tạo đối tượng
+        AlertDialog.Builder b = new AlertDialog.Builder(this);
+        b.setCancelable(false);
+        //Thiết lập tiêu đề
+        b.setTitle("Xác nhận");
+        b.setMessage(title);
+        // Nút Ok
+        b.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                db.QueryData("Delete from CauHoiSai");
+                InitArrayAndAdapter();
+            }
+        });
+        //Nút Cancel
+        b.setNegativeButton("Không đồng ý", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+
+        //Tạo dialog
+        AlertDialog al = b.create();
+        //Hiển thị
+        al.show();
     }
 }

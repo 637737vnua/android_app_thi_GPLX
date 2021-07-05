@@ -52,7 +52,6 @@ public class Home extends AppCompatActivity {
 
         // Database (Khởi tạo và tạo bảng)
         connectDB();
-
     }
 
     //  Ánh xạ button
@@ -141,7 +140,6 @@ public class Home extends AppCompatActivity {
 
     // Khởi tạo, tạo tạo bảng database
     private void connectDB() {
-        // Khoi tao database
         db = new dbCauHoi(this, "CauHoiDataBase.sqlite", null, 1);
     }
 }
